@@ -59,7 +59,7 @@ class AppImages {
   static const String verifyIllustration =
       "assets/images/animations/sammy-line-travel-backpack-with-passport-and-air-ticket.gif";
 
-  // -- OnBoarding Texts
+  // -- OnBoarding Images
   static const String onBoardingImage1 =
       "assets/images/on_boarding_images/sammy-line-searching.gif";
   static const String onBoardingImage2 =
