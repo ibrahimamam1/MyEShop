@@ -1,18 +1,19 @@
 import 'package:e_shop/utils/constants/colors.dart';
-import 'package:e_shop/utils/constants/text_strings.dart';
+import 'package:e_shop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FormDivider extends StatelessWidget {
   const FormDivider({
     super.key,
-    required this.dark,
+    required this.dividerText,
   });
 
-  final bool dark;
+  final String dividerText;
 
   @override
   Widget build(BuildContext context) {
+    final bool dark = AppHelperFunctions.isDarkMode(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -22,7 +23,7 @@ class FormDivider extends StatelessWidget {
                 thickness: 0.5,
                 indent: 60,
                 endIndent: 5)),
-        Text(AppTextStrings.orSignInWith.capitalize!,
+        Text(dividerText.capitalize!,
             style: Theme.of(context).textTheme.labelMedium),
         Flexible(
             child: Divider(
