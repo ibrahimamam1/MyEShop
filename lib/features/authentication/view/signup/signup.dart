@@ -1,6 +1,5 @@
 import 'package:e_shop/common/styles/widgets/login_signup/form_divider.dart';
 import 'package:e_shop/common/styles/widgets/login_signup/social_button.dart';
-import 'package:e_shop/features/authentication/view/signup/widgets/terms_and_conditions_checkbox.dart';
 import 'package:e_shop/features/authentication/view/signup/widgets/signup_form.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/constants/text_strings.dart';
@@ -27,28 +26,13 @@ class SignupScreen extends StatelessWidget {
               const SizedBox(height: AppSizes.spaceBtwSections),
 
               //Form
-              SignUpForm(),
+              const SignUpForm(),
               const SizedBox(
                 height: AppSizes.spaceBtwSections,
               ),
-              const TermsAndConditionsCheckBox(),
-
-              const SizedBox(
-                height: AppSizes.spaceBtwSections,
-              ),
-
-              //SignUpButton
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(AppTextStrings.createAccount),
-                ),
-              ),
-              const SizedBox(height: AppSizes.spaceBtwSections),
 
               //Divider
-              FormDivider(
+              const FormDivider(
                 dividerText: AppTextStrings.orSignUpWith,
               ),
 
