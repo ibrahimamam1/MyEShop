@@ -1,4 +1,5 @@
 import 'package:e_shop/features/authentication/view/signup/signup.dart';
+import 'package:e_shop/navigation_menu.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
@@ -60,15 +61,16 @@ class LoginForm extends StatelessWidget {
           SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: () {}, child: Text(AppTextStrings.signIn))),
+                  onPressed: () => Get.to(() => const NavigationMenu()),
+                  child: const Text(AppTextStrings.signIn))),
           const SizedBox(height: AppSizes.spaceBtwSections),
 
           //Sign Up Button
           SizedBox(
               width: double.infinity,
               child: OutlinedButton(
-                  onPressed: () => Get.to(() => SignupScreen()),
-                  child: Text(AppTextStrings.createAccount))),
+                  onPressed: () => Get.to(() => const SignupScreen()),
+                  child: const Text(AppTextStrings.createAccount))),
           const SizedBox(height: AppSizes.spaceBtwSections),
         ],
       ),

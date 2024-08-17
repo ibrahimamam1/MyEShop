@@ -7,7 +7,6 @@ import 'package:e_shop/utils/constants/image_strings.dart';
 import 'package:e_shop/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -39,13 +38,13 @@ class OnBoardingScreen extends StatelessWidget {
           ),
 
           //Skip Button
-          onBoardingSkipButton(),
+          const onBoardingSkipButton(),
 
           //Dot Navigation Indicator
-          OnBoardingDotNavigation(),
+          const OnBoardingDotNavigation(),
 
           //Circular Button
-          onBoardingNextButton(),
+          const onBoardingNextButton(),
         ],
       ),
     );
