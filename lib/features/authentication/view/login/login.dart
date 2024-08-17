@@ -25,7 +25,7 @@ class LoginScreen extends StatelessWidget {
                   LoginHeader(dark: dark),
 
                   //Form
-                  LoginForm(),
+                  const LoginForm(),
 
                   //Divider
                   const FormDivider(
@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSizes.spaceBtwSections),
                   //Footer
-                  SocialButton()
+                  const SocialButton()
                 ],
               ))),
     );
