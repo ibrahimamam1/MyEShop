@@ -1,5 +1,5 @@
-import 'package:e_shop/common/styles/widgets/custom_shapes/containers/circular_container.dart';
-import 'package:e_shop/common/styles/widgets/custom_shapes/curved_edges/curved_edge_widget.dart';
+import 'package:e_shop/common/widgets/custom_shapes/containers/circular_container.dart';
+import 'package:e_shop/common/widgets/custom_shapes/curved_edges/curved_edge_widget.dart';
 import 'package:e_shop/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -18,17 +18,17 @@ class AppPrimaryHeaderContainer extends StatelessWidget {
           height: 400,
           child: Stack(
             children: [
-              const Positioned(
+              Positioned(
                   top: -150,
                   right: -250,
                   child: CircularContainer(
-                    backgroundColor: AppColors.textWhite,
+                    backgroundColor: AppColors.textWhite.withOpacity(0.1),
                   )),
-              const Positioned(
+              Positioned(
                   top: 100,
                   right: -300,
                   child: CircularContainer(
-                    backgroundColor: AppColors.textWhite,
+                    backgroundColor: AppColors.textWhite.withOpacity(0.1),
                   )),
               child,
             ],

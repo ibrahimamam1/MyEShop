@@ -1,5 +1,5 @@
-import 'package:e_shop/common/styles/widgets/image_text_widgets/vertical_image_text.dart';
-import 'package:e_shop/common/styles/widgets/text/section_heading.dart';
+import 'package:e_shop/common/widgets/image_text_widgets/vertical_image_text.dart';
+import 'package:e_shop/common/widgets/text/section_heading.dart';
 import 'package:e_shop/utils/constants/colors.dart';
 import 'package:e_shop/utils/constants/image_strings.dart';
 import 'package:e_shop/utils/constants/sizes.dart';

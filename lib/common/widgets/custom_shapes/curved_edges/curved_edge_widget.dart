@@ -1,4 +1,4 @@
-import 'package:e_shop/common/styles/widgets/custom_shapes/curved_edges/curved_edges.dart';
+import 'package:e_shop/common/widgets/custom_shapes/curved_edges/curved_edges.dart';
 import 'package:flutter/material.dart';
 
 class CurveEdgeWidget extends StatelessWidget {
