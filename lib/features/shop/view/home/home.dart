@@ -1,5 +1,7 @@
 import 'package:e_shop/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:e_shop/common/widgets/custom_shapes/containers/search_container.dart';
+import 'package:e_shop/common/widgets/layouts/grid_layout.dart';
+import 'package:e_shop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:e_shop/features/shop/view/home/widgets/home_app_bar.dart';
 import 'package:e_shop/features/shop/view/home/widgets/home_category.dart';
 import 'package:e_shop/features/shop/view/home/widgets/promo_slider.dart';
@@ -12,11 +14,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            AppPrimaryHeaderContainer(
+            const AppPrimaryHeaderContainer(
               child: Column(children: [
                 //AppBar
                 HomeAppBar(),
@@ -36,16 +38,35 @@ class HomeScreen extends StatelessWidget {
             ),
 
             //Body
-            Padding(
-              padding: EdgeInsets.all(AppSizes.defaultSpace),
-              child: AppPromoSlider(
-                banners: [
-                  AppImages.promoBanner1,
-                  AppImages.promoBanner2,
-                  AppImages.promoBanner3,
-                  AppImages.promoBanner4
-                ],
-              ),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(AppSizes.defaultSpace),
+                  child: Column(
+                    children: [
+                      //promo slider
+                      const AppPromoSlider(
+                        banners: [
+                          AppImages.promoBanner1,
+                          AppImages.promoBanner2,
+                          AppImages.promoBanner3,
+                          AppImages.promoBanner4
+                        ],
+                      ),
+                      const SizedBox(
+                        height: AppSizes.spaceBtwSections,
+                      ),
+
+                      //Popuylar Products
+                      AppGridLayout(
+                        itemcount: 4,
+                        itemBuilder: (_, index) =>
+                            const AppProductCardVertical(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             )
           ],
         ),

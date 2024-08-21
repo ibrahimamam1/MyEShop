@@ -21,13 +21,19 @@ class AppPrimaryHeaderContainer extends StatelessWidget {
               Positioned(
                   top: -150,
                   right: -250,
-                  child: CircularContainer(
+                  child: AppCircularContainer(
+                    height: 480,
+                    width: 480,
+                    radius: 480,
                     backgroundColor: AppColors.textWhite.withOpacity(0.1),
                   )),
               Positioned(
                   top: 100,
                   right: -300,
-                  child: CircularContainer(
+                  child: AppCircularContainer(
+                    height: 480,
+                    width: 480,
+                    radius: 480,
                     backgroundColor: AppColors.textWhite.withOpacity(0.1),
                   )),
               child,

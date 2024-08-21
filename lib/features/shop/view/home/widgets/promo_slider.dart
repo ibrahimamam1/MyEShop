@@ -36,9 +36,10 @@ class AppPromoSlider extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 for (int i = 0; i < banners.length; i++)
-                  CircularContainer(
+                  AppCircularContainer(
                     width: 20,
                     height: 4,
+                    radius: 10,
                     margin: const EdgeInsets.only(right: 10),
                     backgroundColor: controller.carouselIndex.value == i
                         ? AppColors.primary
