@@ -11,7 +11,7 @@ class AppCircularContainer extends StatelessWidget {
     this.padding,
     this.margin,
     this.child,
-    this.backgroundColor = AppColors.white,
+    this.backgroundColor,
     this.borderColor = AppColors.borderPrimary,
     this.showBorder = false,
   });
@@ -22,7 +22,7 @@ class AppCircularContainer extends StatelessWidget {
   final EdgeInsets? padding;
   final EdgeInsets? margin;
   final Widget? child;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final Color borderColor;
   final bool showBorder;
 

@@ -2,11 +2,11 @@ import 'package:e_shop/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-class CartCounterIcon extends StatelessWidget {
-  const CartCounterIcon({
+class AppCartCounterIcon extends StatelessWidget {
+  const AppCartCounterIcon({
     super.key,
     required this.onPressed,
-    required this.iconColor,
+    this.iconColor = AppColors.white,
   });
 
   final VoidCallback onPressed;

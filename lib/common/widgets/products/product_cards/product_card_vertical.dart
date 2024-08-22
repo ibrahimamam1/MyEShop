@@ -3,6 +3,7 @@ import 'package:e_shop/common/widgets/custom_shapes/containers/circular_containe
 import 'package:e_shop/common/widgets/icons/circular_icon.dart';
 import 'package:e_shop/common/widgets/images/app_rounded_image.dart';
 import 'package:e_shop/common/widgets/products/product_cards/product_price.dart';
+import 'package:e_shop/common/widgets/text/brand_title_text_with_verification_icon.dart';
 import 'package:e_shop/common/widgets/text/product_title_text.dart';
 import 'package:e_shop/utils/constants/colors.dart';
 import 'package:e_shop/utils/constants/image_strings.dart';
@@ -76,62 +77,54 @@ class AppProductCardVertical extends StatelessWidget {
             //details
             Padding(
               padding: const EdgeInsets.only(left: AppSizes.sm),
-              child: Column(
-                children: [
-                  const AppProductTitletext(
-                    title: 'Green Nike Air Shoes',
-                    smallSize: true,
-                  ),
-                  const SizedBox(
-                    height: AppSizes.spaceBtwItems / 2,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Nike',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      const SizedBox(
-                        width: AppSizes.xs,
-                      ),
-                      const Icon(
-                        Iconsax.verify,
-                        color: AppColors.primary,
-                        size: AppSizes.iconXs,
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      //price
-                      const AppProductPrice(
-                        price: '35',
-                      ),
-                      Container(
-                        decoration: const BoxDecoration(
-                            color: AppColors.dark,
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(AppSizes.cardRadiusMd),
-                                bottomRight: Radius.circular(
-                                    AppSizes.productImageRadius))),
-                        child: const SizedBox(
-                          width: AppSizes.iconLg * 1.2,
-                          height: AppSizes.iconLg * 1.2,
-                          child: Center(
-                            child: Icon(
-                              Iconsax.add,
-                              color: AppColors.white,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  )
-                ],
+              child: Container(
+                decoration: BoxDecoration(
+                    color: dark ? AppColors.dark : AppColors.light),
+                child: const Column(
+                  children: [
+                    AppProductTitletext(
+                      title: 'Green Nike Air Shoes',
+                      smallSize: true,
+                    ),
+                    SizedBox(
+                      height: AppSizes.spaceBtwItems / 2,
+                    ),
+                    AppBrandTitleTextWithVerifiedIcon(title: 'Nike'),
+                  ],
+                ),
               ),
+            ),
+
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //price
+                const Padding(
+                  padding: EdgeInsets.only(left: AppSizes.sm),
+                  child: AppProductPrice(
+                    price: '35',
+                  ),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      color: AppColors.dark,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(AppSizes.cardRadiusMd),
+                          bottomRight:
+                              Radius.circular(AppSizes.productImageRadius))),
+                  child: const SizedBox(
+                    width: AppSizes.iconLg * 1.2,
+                    height: AppSizes.iconLg * 1.2,
+                    child: Center(
+                      child: Icon(
+                        Iconsax.add,
+                        color: AppColors.white,
+                      ),
+                    ),
+                  ),
+                )
+              ],
             )
           ],
         ),
