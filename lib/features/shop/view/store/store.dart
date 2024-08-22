@@ -1,9 +1,9 @@
 import 'package:e_shop/common/widgets/appBar/appbar.dart';
 import 'package:e_shop/common/widgets/appBar/tabbar.dart';
+import 'package:e_shop/common/widgets/brands/brand_cards.dart';
 import 'package:e_shop/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:e_shop/common/widgets/layouts/grid_layout.dart';
 import 'package:e_shop/common/widgets/products/cart/cart_menu_icon.dart';
-import 'package:e_shop/common/widgets/brands/brand_cards.dart';
 import 'package:e_shop/common/widgets/text/section_heading.dart';
 import 'package:e_shop/features/shop/view/store/widgets/category_tab.dart';
 import 'package:e_shop/utils/constants/colors.dart';
