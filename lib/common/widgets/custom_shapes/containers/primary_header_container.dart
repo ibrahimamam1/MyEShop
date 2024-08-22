@@ -14,31 +14,28 @@ class AppPrimaryHeaderContainer extends StatelessWidget {
       child: Container(
         color: AppColors.primary,
         padding: const EdgeInsets.all(0),
-        child: SizedBox(
-          height: 400,
-          child: Stack(
-            children: [
-              Positioned(
-                  top: -150,
-                  right: -250,
-                  child: AppCircularContainer(
-                    height: 480,
-                    width: 480,
-                    radius: 480,
-                    backgroundColor: AppColors.textWhite.withOpacity(0.1),
-                  )),
-              Positioned(
-                  top: 100,
-                  right: -300,
-                  child: AppCircularContainer(
-                    height: 480,
-                    width: 480,
-                    radius: 480,
-                    backgroundColor: AppColors.textWhite.withOpacity(0.1),
-                  )),
-              child,
-            ],
-          ),
+        child: Stack(
+          children: [
+            Positioned(
+                top: -150,
+                right: -250,
+                child: AppCircularContainer(
+                  height: 480,
+                  width: 480,
+                  radius: 480,
+                  backgroundColor: AppColors.textWhite.withOpacity(0.1),
+                )),
+            Positioned(
+                top: 100,
+                right: -300,
+                child: AppCircularContainer(
+                  height: 480,
+                  width: 480,
+                  radius: 480,
+                  backgroundColor: AppColors.textWhite.withOpacity(0.1),
+                )),
+            child,
+          ],
         ),
       ),
     );

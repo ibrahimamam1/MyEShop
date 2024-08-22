@@ -1,3 +1,4 @@
+import 'package:e_shop/features/personalisation/views/settings/settings.dart';
 import 'package:e_shop/features/shop/view/home/home.dart';
 import 'package:e_shop/features/shop/view/store/store.dart';
 import 'package:e_shop/features/wishlist/wishlist.dart';
@@ -46,6 +47,6 @@ class NavigationController extends GetxController {
     const HomeScreen(),
     const StoreScreen(),
     const FavouriteScreen(),
-    Container()
+    const SettingsScreen()
   ];
 }

@@ -35,6 +35,7 @@ class HomeScreen extends StatelessWidget {
 
                 //Categories
                 AppHomeCategories(),
+                SizedBox(height: AppSizes.spaceBtwSections)
               ]),
             ),
 
