@@ -1,7 +1,7 @@
 import 'package:e_shop/features/personalisation/views/settings/settings.dart';
 import 'package:e_shop/features/shop/view/home/home.dart';
 import 'package:e_shop/features/shop/view/store/store.dart';
-import 'package:e_shop/features/wishlist/wishlist.dart';
+import 'package:e_shop/features/shop/view/wishlist/wishlist.dart';
 import 'package:e_shop/utils/constants/colors.dart';
 import 'package:e_shop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';

@@ -10,7 +10,7 @@ class AppPrimaryHeaderContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CurveEdgeWidget(
+    return AppCurveEdgeWidget(
       child: Container(
         color: AppColors.primary,
         padding: const EdgeInsets.all(0),
