@@ -4,8 +4,10 @@ import 'package:e_shop/features/shop/view/product_details/widgets/product_attrib
 import 'package:e_shop/features/shop/view/product_details/widgets/product_detail_image_slider.dart';
 import 'package:e_shop/features/shop/view/product_details/widgets/product_metadata.dart';
 import 'package:e_shop/features/shop/view/product_details/widgets/rating_share_widget.dart';
+import 'package:e_shop/features/shop/view/product_review/product_review.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
 
@@ -52,16 +54,17 @@ class ProductDetailScreen extends StatelessWidget {
                       showActionButton: false,
                     ),
                     const SizedBox(height: AppSizes.spaceBtwItems),
+
                     const ReadMoreText(
                       'This is a product description for green nike shoes. There are some things that can added ',
                       trimLines: 2,
                       trimMode: TrimMode.Line,
                       trimCollapsedText: 'Show More',
                       trimExpandedText: 'Less',
-                      moreStyle: TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.w800),
-                      lessStyle: TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.w800),
+                      moreStyle:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                      lessStyle:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                     ),
 
                     //Reviews
@@ -78,7 +81,8 @@ class ProductDetailScreen extends StatelessWidget {
                           onPressed: () {},
                         ),
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () =>
+                                Get.to(() => const ProductReviewScreen()),
                             icon: const Icon(
                               Iconsax.arrow_right_3,
                               size: 18,
