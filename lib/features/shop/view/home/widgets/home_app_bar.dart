@@ -29,9 +29,8 @@ class HomeAppBar extends StatelessWidget {
           )
         ],
       ),
-      actions: [
+      actions: const [
         AppCartCounterIcon(
-          onPressed: () {},
           iconColor: AppColors.white,
         )
       ],
