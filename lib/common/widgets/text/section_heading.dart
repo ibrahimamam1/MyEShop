@@ -29,7 +29,7 @@ class AppSectionHeading extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         if (showActionButton)
-          TextButton(onPressed: () {}, child: Text(buttonTittle))
+          TextButton(onPressed: onPressed, child: Text(buttonTittle))
       ],
     );
   }
