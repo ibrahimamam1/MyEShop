@@ -34,7 +34,7 @@ class AppProductAttributes extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(children: [
-                      const AppProductTitletext(
+                      const AppProductTitleText(
                         title: 'Price',
                         smallSize: true,
                       ),
@@ -61,7 +61,7 @@ class AppProductAttributes extends StatelessWidget {
                     //Stock Status
                     Row(
                       children: [
-                        const AppProductTitletext(
+                        const AppProductTitleText(
                           title: 'Stock : ',
                           smallSize: true,
                         ),
@@ -77,7 +77,7 @@ class AppProductAttributes extends StatelessWidget {
             ),
 
             //Variation Description
-            const AppProductTitletext(
+            const AppProductTitleText(
               title:
                   'This is the description of the product and it can go up to max 4 lines',
               smallSize: true,

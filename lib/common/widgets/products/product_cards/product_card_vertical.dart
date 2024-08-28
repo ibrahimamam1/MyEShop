@@ -84,7 +84,7 @@ class AppProductCardVertical extends StatelessWidget {
                     color: dark ? AppColors.dark : AppColors.light),
                 child: const Column(
                   children: [
-                    AppProductTitletext(
+                    AppProductTitleText(
                       title: 'Green Nike Air Shoes',
                       smallSize: true,
                     ),
@@ -108,6 +108,8 @@ class AppProductCardVertical extends StatelessWidget {
                     price: '35',
                   ),
                 ),
+
+                //Add to Cart Button
                 Container(
                   decoration: const BoxDecoration(
                       color: AppColors.dark,

@@ -36,7 +36,7 @@ class AppCartItem extends StatelessWidget {
             children: [
               const AppBrandTitleTextWithVerifiedIcon(title: 'Nike'),
               const Flexible(
-                child: AppProductTitletext(
+                child: AppProductTitleText(
                   title: 'Black Sports Shoes',
                   maxLines: 1,
                 ),

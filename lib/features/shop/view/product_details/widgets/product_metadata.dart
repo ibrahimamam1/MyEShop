@@ -62,7 +62,7 @@ class AppProductMetaData extends StatelessWidget {
         ),
 
         //Title
-        const AppProductTitletext(title: 'Green Nike Sports Shirt'),
+        const AppProductTitleText(title: 'Green Nike Sports Shirt'),
         const SizedBox(
           height: AppSizes.spaceBtwItems / 1.5,
         ),
@@ -70,7 +70,7 @@ class AppProductMetaData extends StatelessWidget {
         //Stock Status
         Row(
           children: [
-            const AppProductTitletext(title: 'Status'),
+            const AppProductTitleText(title: 'Status'),
             const SizedBox(
               width: AppSizes.spaceBtwItems,
             ),
