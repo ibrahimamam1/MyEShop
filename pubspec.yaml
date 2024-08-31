@@ -35,6 +35,9 @@ dependencies:
   carousel_slider: ^5.0.0
   readmore: ^3.0.0
 
+  #Firebase
+  firebase_core: ^2.24.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
