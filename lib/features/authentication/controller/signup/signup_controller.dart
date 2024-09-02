@@ -4,6 +4,7 @@ import 'package:e_shop/data/repositories/user/user_repository.dart';
 import 'package:e_shop/features/authentication/view/signup/verify_email.dart';
 import 'package:e_shop/features/personalisation/models/user_model.dart';
 import 'package:e_shop/utils/network/network_manager.dart';
+import 'package:e_shop/utils/popups/full_screen_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,9 +25,9 @@ class SignupController extends GetxController {
   //signup
   Future<void> signup() async {
     try {
-      //start loading
-      //AppFullscreenLoader.openLoadingDialog(
-      //'Processing', AppImages.staticSuccessIllustration);
+      // //start loading
+      // AppFullscreenLoader.openLoadingDialog(
+      //     'Processing', AppImages.docerAnimation);
 
       //check internet Connection
       final isConnected = await NetworkManager.instance.isConnected();
@@ -72,7 +73,7 @@ class SignupController extends GetxController {
       await userRepository.saveUserRecord(newUser);
 
       //remove loader
-      //AppFullscreenLoader.stopLoading();
+      AppFullscreenLoader.stopLoading();
 
       //show success Message
       AppLoaders.sucessSnackBar(
@@ -80,7 +81,9 @@ class SignupController extends GetxController {
           message: 'Your Account have been created verify email to continue');
 
       //move to verify email screen
-      Get.to(() => const VerifyEmailScreen());
+      Get.to(() => VerifyEmailScreen(
+            email: email.text.trim(),
+          ));
     } catch (e) {
       //handle exception
       AppLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
