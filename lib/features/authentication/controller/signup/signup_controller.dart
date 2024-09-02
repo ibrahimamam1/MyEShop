@@ -32,6 +32,7 @@ class SignupController extends GetxController {
       //check internet Connection
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
+        AppFullscreenLoader.stopLoading();
         AppLoaders.errorSnackBar(
             title: 'No Internet Connection',
             message:
@@ -41,11 +42,13 @@ class SignupController extends GetxController {
 
       //Form Validation
       if (!signupFormKey.currentState!.validate()) {
+        AppFullscreenLoader.stopLoading();
         return;
       }
 
       //Privacy Policy
       if (!privacyPolicy.value) {
+        AppFullscreenLoader.stopLoading();
         AppLoaders.warningSnackBar(
             title: 'Accept Privacy Policy',
             message:
