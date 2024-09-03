@@ -3,7 +3,6 @@ import 'package:e_shop/data/repositories/user/user_repository.dart';
 import 'package:e_shop/features/personalisation/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();

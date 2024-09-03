@@ -1,4 +1,4 @@
-import 'package:e_shop/features/authentication/controller/onBoarding_controller.dart';
+import 'package:e_shop/features/authentication/controller/onboarding/onBoarding_controller.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';

@@ -1,13 +1,15 @@
-import 'package:e_shop/features/authentication/view/password_configuration/reset_password.dart';
+import 'package:e_shop/features/authentication/controller/forgot_password/forgot_password_controller.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/constants/text_strings.dart';
+import 'package:e_shop/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ForgotPassWord extends StatelessWidget {
-  const ForgotPassWord({super.key});
+  ForgotPassWord({super.key});
 
+  final controller = Get.put(ForgotPasswordController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,10 +34,15 @@ class ForgotPassWord extends StatelessWidget {
             ),
 
             //TextFields
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: AppTextStrings.email,
-                prefixIcon: Icon(Iconsax.direct_right),
+            Form(
+              key: controller.forgotPasswordFormKey,
+              child: TextFormField(
+                controller: controller.email,
+                validator: AppValidator.validateEmail,
+                decoration: const InputDecoration(
+                  labelText: AppTextStrings.email,
+                  prefixIcon: Icon(Iconsax.direct_right),
+                ),
               ),
             ),
             const SizedBox(
@@ -46,7 +53,7 @@ class ForgotPassWord extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: () => Get.off(() => const ResetPassword()),
+                  onPressed: () => controller.sendPasswordResetEmail(),
                   child: const Text(AppTextStrings.submit)),
             )
           ],
