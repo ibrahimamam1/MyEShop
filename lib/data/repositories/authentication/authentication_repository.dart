@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
@@ -99,9 +100,58 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+  ///[Email Authentication] - FORGOT PASSWORD
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException {
+      rethrow;
+    } on FirebaseException {
+      rethrow;
+    } on FormatException {
+      rethrow;
+    } on PlatformException {
+      rethrow;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  /// [GoogleAuthentication] -- log in with google account
+  Future<UserCredential?> signInWithGoogle() async {
+    try {
+      //Trigger the authentication flow
+      final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
+
+      //obtain the auth details
+      final GoogleSignInAuthentication? googleAuth =
+          await userAccount?.authentication;
+
+      //create a new credential
+      final credentials = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+      // Once signed in , return user Credential
+      return await _auth.signInWithCredential(credentials);
+
+      //
+    } on FirebaseAuthException {
+      rethrow;
+    } on FirebaseException {
+      rethrow;
+    } on FormatException {
+      rethrow;
+    } on PlatformException {
+      rethrow;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
   ///[Logout User] - valid for any authentication
   Future<void> logout() async {
     try {
+      await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const LoginScreen());
     } on FirebaseAuthException {

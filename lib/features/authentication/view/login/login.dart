@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSizes.spaceBtwSections),
                   //Footer
-                  const SocialButton()
+                  const AppSocialButtons()
                 ],
               ))),
     );

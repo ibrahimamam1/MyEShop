@@ -37,7 +37,7 @@ class SignupScreen extends StatelessWidget {
               ),
 
               //social button
-              const SocialButton(),
+              const AppSocialButtons(),
             ],
           ),
         )));
