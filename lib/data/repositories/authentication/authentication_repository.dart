@@ -1,3 +1,4 @@
+import 'package:e_shop/data/repositories/user/user_repository.dart';
 import 'package:e_shop/features/authentication/view/login/login.dart';
 import 'package:e_shop/features/authentication/view/onboarding/onboarding.dart';
 import 'package:e_shop/features/authentication/view/signup/verify_email.dart';
@@ -15,6 +16,9 @@ class AuthenticationRepository extends GetxController {
   ///Variables
   final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
+
+  //Return Authenticated User Data
+  User? get authUser => _auth.currentUser;
 
   //called automatically from main.dart on app launch
   @override
@@ -148,12 +152,53 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+  ///[ReAuthentication] - Re authenticate user
+  Future<void> reAuthenticationWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      //create a credential
+      AuthCredential credential =
+          EmailAuthProvider.credential(email: email, password: password);
+
+      //reauthenticate
+      await _auth.currentUser!.reauthenticateWithCredential(credential);
+    } on FirebaseAuthException {
+      rethrow;
+    } on FirebaseException {
+      rethrow;
+    } on FormatException {
+      rethrow;
+    } on PlatformException {
+      rethrow;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
   ///[Logout User] - valid for any authentication
   Future<void> logout() async {
     try {
       await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const LoginScreen());
+    } on FirebaseAuthException {
+      rethrow;
+    } on FirebaseException {
+      rethrow;
+    } on FormatException {
+      rethrow;
+    } on PlatformException {
+      rethrow;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  ///[Delete Account] - delete user Account
+  Future<void> deleteAccount() async {
+    try {
+      await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
+      await _auth.currentUser?.delete();
     } on FirebaseAuthException {
       rethrow;
     } on FirebaseException {

@@ -1,6 +1,7 @@
 import 'package:e_shop/common/widgets/appBar/appbar.dart';
 import 'package:e_shop/common/widgets/images/app_circular_image.dart';
 import 'package:e_shop/common/widgets/text/section_heading.dart';
+import 'package:e_shop/features/personalisation/controllers/user_controller.dart';
 import 'package:e_shop/features/personalisation/views/profile/widgets/profile_menu.dart';
 import 'package:e_shop/utils/constants/image_strings.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
@@ -11,6 +12,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
         appBar: const SAppBar(
           showBackArrow: true,
@@ -64,14 +66,25 @@ class ProfileScreen extends StatelessWidget {
                 ),
 
                 AppProfileMenuItem(
-                    title: 'UserId', value: '213734', onPressed: () {}),
+                    title: 'Name',
+                    value: controller.user.value.fullName,
+                    onPressed: () {}),
+                AppProfileMenuItem(
+                    title: 'User Name',
+                    value: controller.user.value.userName,
+                    onPressed: () {}),
+
+                AppProfileMenuItem(
+                    title: 'UserId',
+                    value: controller.user.value.id,
+                    onPressed: () {}),
                 AppProfileMenuItem(
                     title: 'Email',
-                    value: 'random@random.com',
+                    value: controller.user.value.email,
                     onPressed: () {}),
                 AppProfileMenuItem(
                     title: 'Phone Number',
-                    value: '+8801894670871',
+                    value: controller.user.value.phoneNumber,
                     onPressed: () {}),
                 AppProfileMenuItem(
                     title: 'Gender', value: 'Male', onPressed: () {}),
