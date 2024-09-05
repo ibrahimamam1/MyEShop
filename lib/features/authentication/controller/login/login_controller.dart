@@ -102,11 +102,6 @@ class LoginController extends GetxController {
         return;
       }
 
-      //Form Validation
-      if (!loginFormKey.currentState!.validate()) {
-        AppFullscreenLoader.stopLoading();
-        return;
-      }
       //google authentication
       final userCredentials =
           await AuthenticationRepository.instance.signInWithGoogle();
