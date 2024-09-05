@@ -8,9 +8,9 @@ import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/network/network_manager.dart';
 import 'package:e_shop/utils/popups/full_screen_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../data/repositories/authentication/authentication_repository.dart';
 
@@ -30,33 +30,39 @@ class UserController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchUserRecord;
+    fetchUserRecord();
   }
 
   /// Save user Record from any registration provider
 
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
-      if (userCredentials != null) {
-        //convert name to first name and last name
-        final nameParts =
-            UserModel.nameparts(userCredentials.user!.displayName ?? '');
-        final userName =
-            UserModel.generateUsername(userCredentials.user!.displayName ?? '');
+      //refresh user record
+      await fetchUserRecord();
 
-        //Map data
-        final user = UserModel(
-          id: userCredentials.user!.uid,
-          firstName: nameParts[0],
-          lastName: nameParts.length > 1 ? nameParts.sublist(1).join() : '',
-          userName: userName,
-          email: userCredentials.user!.email ?? '',
-          phoneNumber: userCredentials.user!.phoneNumber ?? '',
-          profilePicture: userCredentials.user!.photoURL ?? '',
-        );
+      //if record is already stored
+      if (user.value.id.isEmpty) {
+        if (userCredentials != null) {
+          //convert name to first name and last name
+          final nameParts =
+              UserModel.nameparts(userCredentials.user!.displayName ?? '');
+          final userName = UserModel.generateUsername(
+              userCredentials.user!.displayName ?? '');
 
-        //save data
-        await userRepository.saveUserRecord(user);
+          //Map data
+          final user = UserModel(
+            id: userCredentials.user!.uid,
+            firstName: nameParts[0],
+            lastName: nameParts.length > 1 ? nameParts.sublist(1).join() : '',
+            userName: userName,
+            email: userCredentials.user!.email ?? '',
+            phoneNumber: userCredentials.user!.phoneNumber ?? '',
+            profilePicture: userCredentials.user!.photoURL ?? '',
+          );
+
+          //save data
+          await userRepository.saveUserRecord(user);
+        }
       }
     } catch (e) {
       AppLoaders.warningSnackBar(
@@ -79,20 +85,21 @@ class UserController extends GetxController {
   //DeleteaccountWarning
   void deleteAccountWarningPopup() {
     Get.defaultDialog(
-        contentPadding: EdgeInsets.all(AppSizes.md),
+        contentPadding: const EdgeInsets.all(AppSizes.md),
         title: 'Delete Account',
         middleText:
             'Are you sure tou want to delete your account permanently? This action is not reversible and all of your data will be removed permanently',
-        confirm: ElevatedButton(
+        confirm: OutlinedButton(
             onPressed: () async => deleteUserAccount(),
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,
-                side: BorderSide(color: Colors.red)),
-            child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppSizes.lg))),
+                side: const BorderSide(color: Colors.red)),
+            child: const Text('Comfirm')),
         cancel: OutlinedButton(
             onPressed: () => Navigator.of(Get.overlayContext!).pop(),
-            child: Text('Cancel')));
+            child: const Text(
+              'Cancel',
+            )));
   }
 
   //delete user account
@@ -111,10 +118,10 @@ class UserController extends GetxController {
           await auth.signInWithGoogle();
           await auth.deleteAccount();
           AppFullscreenLoader.stopLoading();
-          Get.offAll(() => LoginScreen());
+          Get.offAll(() => const LoginScreen());
         } else if (provider == 'password') {
           AppFullscreenLoader.stopLoading();
-          Get.to(() => ReAuthLoginForm());
+          Get.to(() => const ReAuthLoginForm());
         }
       }
     } catch (e) {
@@ -152,10 +159,36 @@ class UserController extends GetxController {
               verifyEmail.text.trim(), verifyPassword.text.trim());
       await AuthenticationRepository.instance.deleteAccount();
       AppFullscreenLoader.stopLoading();
-      Get.offAll(LoginScreen());
+      Get.offAll(const LoginScreen());
     } catch (e) {
       AppFullscreenLoader.stopLoading();
       AppLoaders.warningSnackBar(title: 'Oh snap!', message: e.toString());
+    }
+  }
+
+  /// Upload Profile Image
+  uploadUserProfilePicture() async {
+    try {
+      final image = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+          imageQuality: 70,
+          maxHeight: 512,
+          maxWidth: 512);
+
+      if (image != null) {
+        // upload image
+        final imageUrl =
+            await userRepository.uploadImage('Users/Images/Profile/', image);
+
+        //upload user image record
+        Map<String, dynamic> json = {'ProfilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+
+        user.value.profilePicture = imageUrl;
+      }
+    } catch (e) {
+      AppLoaders.errorSnackBar(
+          title: 'Oh Snap', message: 'Something wnt wrong: $e');
     }
   }
 }

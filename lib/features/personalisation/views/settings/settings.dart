@@ -28,13 +28,14 @@ class SettingsScreen extends StatelessWidget {
                 child: Column(
               children: [
                 SAppBar(
+                    showBackArrow: false,
                     title: Text(
-                  'Account',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium!
-                      .apply(color: AppColors.white),
-                )),
+                      'Account',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium!
+                          .apply(color: AppColors.white),
+                    )),
                 const SizedBox(height: AppSizes.spaceBtwSections),
 
                 //User Profile Card

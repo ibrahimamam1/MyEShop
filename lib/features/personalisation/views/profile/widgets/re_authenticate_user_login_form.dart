@@ -3,7 +3,6 @@ import 'package:e_shop/features/personalisation/controllers/user_controller.dart
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/constants/text_strings.dart';
 import 'package:e_shop/utils/validators/validation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -23,7 +22,7 @@ class ReAuthLoginForm extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(AppSizes.defaultSpace),
+          padding: const EdgeInsets.all(AppSizes.defaultSpace),
           child: Form(
             key: controller.reAuthFormKey,
             child: Column(
@@ -34,11 +33,11 @@ class ReAuthLoginForm extends StatelessWidget {
                   controller: controller.verifyEmail,
                   validator: (value) => AppValidator.validateEmail(value),
                   expands: false,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: AppTextStrings.email,
                       prefixIcon: Icon(Iconsax.direct_right)),
                 ),
-                SizedBox(height: AppSizes.spaceBtwInputFields),
+                const SizedBox(height: AppSizes.spaceBtwInputFields),
 
                 //passowrd
                 Obx(
@@ -50,11 +49,11 @@ class ReAuthLoginForm extends StatelessWidget {
                     expands: false,
                     decoration: InputDecoration(
                         labelText: AppTextStrings.password,
-                        prefixIcon: Icon(Iconsax.password_check),
+                        prefixIcon: const Icon(Iconsax.password_check),
                         suffixIcon: IconButton(
                             onPressed: () => controller.hidepassword.value =
                                 !controller.hidepassword.value,
-                            icon: Icon(Iconsax.eye_slash))),
+                            icon: const Icon(Iconsax.eye_slash))),
                   ),
                 ),
                 //Login button
@@ -63,7 +62,7 @@ class ReAuthLoginForm extends StatelessWidget {
                   child: ElevatedButton(
                       onPressed: () =>
                           controller.reAuthenticateEmailAndPasswordUser(),
-                      child: Text('Save')),
+                      child: const Text('Save')),
                 )
               ],
             ),

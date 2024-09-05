@@ -71,7 +71,7 @@ class UpdateNameController extends GetxController {
           title: 'Congratulations', message: 'Your Name has been updated');
 
       //Redirect
-      Get.off(ProfileScreen());
+      Get.off(const ProfileScreen());
     } catch (e) {
       AppFullscreenLoader.stopLoading();
       AppLoaders.errorSnackBar(title: 'Oh  Snap!', message: e.toString());

@@ -3,7 +3,6 @@ import 'package:e_shop/features/personalisation/controllers/profile/update_name_
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/constants/text_strings.dart';
 import 'package:e_shop/utils/validators/validation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -22,7 +21,7 @@ class ChangeNameScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineSmall),
       ),
       body: Padding(
-        padding: EdgeInsets.all(AppSizes.defaultSpace),
+        padding: const EdgeInsets.all(AppSizes.defaultSpace),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -43,17 +42,17 @@ class ChangeNameScreen extends StatelessWidget {
                     validator: (value) =>
                         AppValidator.validateEmptyText('First Name', value),
                     expands: false,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         labelText: AppTextStrings.firstName,
                         prefixIcon: Icon(Iconsax.user)),
                   ),
-                  SizedBox(height: AppSizes.spaceBtwInputFields),
+                  const SizedBox(height: AppSizes.spaceBtwInputFields),
                   TextFormField(
                     controller: controller.lastName,
                     validator: (value) =>
                         AppValidator.validateEmptyText('Last Name', value),
                     expands: false,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         labelText: AppTextStrings.lastName,
                         prefixIcon: Icon(Iconsax.user)),
                   ),
@@ -67,7 +66,7 @@ class ChangeNameScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                   onPressed: () => controller.updateUserName(),
-                  child: Text('Save')),
+                  child: const Text('Save')),
             ),
           ],
         ),

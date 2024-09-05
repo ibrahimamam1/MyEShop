@@ -1,3 +1,4 @@
+import 'package:e_shop/common/widgets/images/app_circular_image.dart';
 import 'package:e_shop/utils/constants/colors.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/helpers/helper_functions.dart';
@@ -10,6 +11,7 @@ class AppVerticalImageText extends StatelessWidget {
     required this.title,
     this.textColor = AppColors.white,
     this.backgroundcolor = AppColors.white,
+    this.isNetworkImage = true,
     this.onTap,
   });
 
@@ -17,6 +19,7 @@ class AppVerticalImageText extends StatelessWidget {
   final Color textColor;
   final Color? backgroundcolor;
   final void Function()? onTap;
+  final bool isNetworkImage;
 
   @override
   Widget build(BuildContext context) {
@@ -27,26 +30,15 @@ class AppVerticalImageText extends StatelessWidget {
         child: Column(
           children: [
             //circular Icon
-            Container(
-              width: 56,
-              height: 56,
-              padding: const EdgeInsets.all(AppSizes.sm),
-              decoration: BoxDecoration(
-                color: backgroundcolor ??
-                    (AppHelperFunctions.isDarkMode(context)
-                        ? AppColors.black
-                        : AppColors.white),
-                borderRadius: BorderRadius.circular(180),
-              ),
-              child: Center(
-                child: Image(
-                  image: AssetImage(image),
-                  fit: BoxFit.cover,
-                  color: AppHelperFunctions.isDarkMode(context)
-                      ? AppColors.white
-                      : AppColors.dark,
-                ),
-              ),
+            AppCircularImage(
+              image: image,
+              fit: BoxFit.fitWidth,
+              padding: AppSizes.sm * 1.4,
+              isNetworkImage: isNetworkImage,
+              backgroundColor: backgroundcolor,
+              overlayColor: AppHelperFunctions.isDarkMode(context)
+                  ? AppColors.light
+                  : AppColors.dark,
             ),
             const SizedBox(
               height: AppSizes.spaceBtwItems / 2,

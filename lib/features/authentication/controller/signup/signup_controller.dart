@@ -3,6 +3,7 @@ import 'package:e_shop/data/repositories/authentication/authentication_repositor
 import 'package:e_shop/data/repositories/user/user_repository.dart';
 import 'package:e_shop/features/authentication/view/signup/verify_email.dart';
 import 'package:e_shop/features/personalisation/models/user_model.dart';
+import 'package:e_shop/utils/constants/image_strings.dart';
 import 'package:e_shop/utils/network/network_manager.dart';
 import 'package:e_shop/utils/popups/full_screen_loader.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +26,9 @@ class SignupController extends GetxController {
   //signup
   Future<void> signup() async {
     try {
-      // //start loading
-      // AppFullscreenLoader.openLoadingDialog(
-      //     'Processing', AppImages.docerAnimation);
+      //start loading
+      AppFullscreenLoader.openLoadingDialog(
+          'Processing', AppImages.docerAnimation);
 
       //check internet Connection
       final isConnected = await NetworkManager.instance.isConnected();

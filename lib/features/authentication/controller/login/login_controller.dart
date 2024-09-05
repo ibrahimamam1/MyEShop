@@ -107,13 +107,6 @@ class LoginController extends GetxController {
         AppFullscreenLoader.stopLoading();
         return;
       }
-
-      //Save Data if Remember Me is Selected
-      if (rememberMe.value) {
-        localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
-        localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
-      }
-
       //google authentication
       final userCredentials =
           await AuthenticationRepository.instance.signInWithGoogle();
