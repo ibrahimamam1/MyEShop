@@ -5,9 +5,10 @@ import 'package:e_shop/common/widgets/images/app_rounded_image.dart';
 import 'package:e_shop/common/widgets/products/product_cards/product_price.dart';
 import 'package:e_shop/common/widgets/text/brand_title_text_with_verification_icon.dart';
 import 'package:e_shop/common/widgets/text/product_title_text.dart';
+import 'package:e_shop/features/shop/controller/product_controller.dart';
+import 'package:e_shop/features/shop/models/product_model.dart';
 import 'package:e_shop/features/shop/view/product_details/product_details.dart';
 import 'package:e_shop/utils/constants/colors.dart';
-import 'package:e_shop/utils/constants/image_strings.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +16,19 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class AppProductCardVertical extends StatelessWidget {
-  const AppProductCardVertical({super.key});
+  const AppProductCardVertical({super.key, required this.product});
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
+    final controller = ProductController.instance;
     final dark = AppHelperFunctions.isDarkMode(context);
+    final discountPercentage =
+        controller.calculateSalePercentage(product.price, product.salePrice);
 
     return GestureDetector(
-      onTap: () => Get.to(() => const ProductDetailScreen()),
+      onTap: () => Get.to(() => ProductDetailScreen(product: product)),
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -35,14 +41,18 @@ class AppProductCardVertical extends StatelessWidget {
             //Thumbnail , wishlist buttpn , discount tag
             AppCircularContainer(
               height: 180,
+              width: 180,
               padding: const EdgeInsets.all(AppSizes.sm),
               backgroundColor: dark ? AppColors.dark : AppColors.light,
               child: Stack(
                 children: [
                   //thumbnail image
-                  const AppRoundedImage(
-                    imageURL: AppImages.productImage1,
-                    applyImageRadius: true,
+                  Center(
+                    child: AppRoundedImage(
+                      imageURL: product.thumbnail,
+                      applyImageRadius: true,
+                      isNetworkImage: true,
+                    ),
                   ),
 
                   //sale tag
@@ -54,7 +64,7 @@ class AppProductCardVertical extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: AppSizes.sm, vertical: AppSizes.xs),
                       child: Text(
-                        '25%',
+                        '$discountPercentage',
                         style: Theme.of(context)
                             .textTheme
                             .labelLarge!
@@ -82,16 +92,17 @@ class AppProductCardVertical extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     color: dark ? AppColors.dark : AppColors.light),
-                child: const Column(
+                child: Column(
                   children: [
                     AppProductTitleText(
-                      title: 'Green Nike Air Shoes',
+                      title: product.title,
                       smallSize: true,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: AppSizes.spaceBtwItems / 2,
                     ),
-                    AppBrandTitleTextWithVerifiedIcon(title: 'Nike'),
+                    AppBrandTitleTextWithVerifiedIcon(
+                        title: product.brand!.name),
                   ],
                 ),
               ),
@@ -102,11 +113,27 @@ class AppProductCardVertical extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 //price
-                const Padding(
-                  padding: EdgeInsets.only(left: AppSizes.sm),
-                  child: AppProductPrice(
-                    price: '35',
-                  ),
+                Flexible(
+                  child: Column(children: [
+                    if (product.productType == 'single' &&
+                        product.salePrice > 0)
+                      Padding(
+                        padding: const EdgeInsets.only(left: AppSizes.sm),
+                        child: Text(
+                          product.price.toString(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium!
+                              .apply(decoration: TextDecoration.lineThrough),
+                        ),
+                      ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: AppSizes.sm),
+                      child: AppProductPrice(
+                        price: controller.getProductPrice(product),
+                      ),
+                    ),
+                  ]),
                 ),
 
                 //Add to Cart Button

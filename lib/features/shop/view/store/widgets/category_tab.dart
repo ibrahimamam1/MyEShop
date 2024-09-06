@@ -3,6 +3,7 @@ import 'package:e_shop/common/widgets/layouts/grid_layout.dart';
 import 'package:e_shop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:e_shop/common/widgets/text/section_heading.dart';
 import 'package:e_shop/features/shop/models/category_model.dart';
+import 'package:e_shop/features/shop/models/product_model.dart';
 import 'package:e_shop/utils/constants/image_strings.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,9 @@ class AppCategoryTab extends StatelessWidget {
 
                 AppGridLayout(
                     itemcount: 4,
-                    itemBuilder: (_, index) => const AppProductCardVertical()),
+                    itemBuilder: (_, index) => AppProductCardVertical(
+                          product: ProductModel.empty(),
+                        )),
                 const SizedBox(height: AppSizes.spaceBtwItems),
               ],
             ),

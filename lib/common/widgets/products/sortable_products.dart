@@ -1,5 +1,6 @@
 import 'package:e_shop/common/widgets/layouts/grid_layout.dart';
 import 'package:e_shop/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:e_shop/features/shop/models/product_model.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -33,7 +34,8 @@ class AppSortableProducts extends StatelessWidget {
         //Products
         AppGridLayout(
             itemcount: 10,
-            itemBuilder: (_, index) => const AppProductCardVertical()),
+            itemBuilder: (_, index) =>
+                AppProductCardVertical(product: ProductModel.empty())),
 
         //
       ],
