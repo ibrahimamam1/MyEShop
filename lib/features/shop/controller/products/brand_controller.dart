@@ -1,7 +1,8 @@
 import 'package:e_shop/common/widgets/loaders/loaders.dart';
 import 'package:e_shop/data/repositories/brands/brand_repository.dart';
-import 'package:e_shop/features/authentication/controller/login/login_controller.dart';
+import 'package:e_shop/data/repositories/products/product_repository.dart';
 import 'package:e_shop/features/shop/models/brand_model.dart';
+import 'package:e_shop/features/shop/models/product_model.dart';
 import 'package:get/get.dart';
 
 class BrandController extends GetxController {
@@ -24,7 +25,6 @@ class BrandController extends GetxController {
       isLoading.value = true;
 
       final brands = await brandRepository.getAllBrands();
-
       allBrands.assignAll(brands);
 
       featuredBrands.assignAll(
@@ -32,10 +32,35 @@ class BrandController extends GetxController {
     } catch (e) {
       AppLoaders.errorSnackBar(
           title: 'Something Went Wrong fetching brands', message: e.toString());
+    } finally {
+      isLoading.value = false;
     }
   }
 
   // Get Brands For Category
+  Future<List<BrandModel>> getBrandsForCategory(String categoryId) async {
+    try {
+      final brands = await brandRepository.getBrandsForCategory(categoryId);
+      return brands;
+    } catch (e) {
+      AppLoaders.errorSnackBar(
+          title: 'Error Fetcging brands for category', message: e.toString());
+      return [];
+    }
+  }
 
   //Get Brand Specific Products from your data source
+  Future<List<ProductModel>> getBrandProducts(
+      {required String brandId, int limit = -1}) async {
+    try {
+      final products = await ProductRepository.instance
+          .fetchProductsForBrands(brandId: brandId, limit: limit);
+      return products;
+    } catch (e) {
+      AppLoaders.errorSnackBar(
+          title: 'Something went Wrong Fetching Brands For Products',
+          message: e.toString());
+      return [];
+    }
+  }
 }

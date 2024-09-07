@@ -3,7 +3,6 @@ import 'package:e_shop/common/widgets/brands/brand_cards.dart';
 import 'package:e_shop/common/widgets/layouts/grid_layout.dart';
 import 'package:e_shop/common/widgets/text/section_heading.dart';
 import 'package:e_shop/features/shop/controller/products/brand_controller.dart';
-import 'package:e_shop/features/shop/models/brand_model.dart';
 import 'package:e_shop/features/shop/view/brands/brand_product.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +31,9 @@ class AllBrandsScreen extends StatelessWidget {
               //Brands
               //Brands Grid
               Obx(() {
-                if (brandController.isLoading.value)
-                  return CircularProgressIndicator();
+                if (brandController.isLoading.value) {
+                  return const CircularProgressIndicator();
+                }
 
                 if (brandController.allBrands.isEmpty) {
                   return Center(
@@ -48,7 +48,11 @@ class AllBrandsScreen extends StatelessWidget {
                     mainAxisExtent: 80,
                     itemBuilder: (_, index) {
                       final brand = brandController.featuredBrands[index];
-                      return AppBrandCard(showBorder: true, brand: brand);
+                      return AppBrandCard(
+                          showBorder: true,
+                          brand: brand,
+                          onTap: () =>
+                              Get.to(() => BrandProducts(brand: brand)));
                     });
               })
             ],

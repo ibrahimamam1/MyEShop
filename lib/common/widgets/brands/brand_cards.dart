@@ -4,7 +4,6 @@ import 'package:e_shop/common/widgets/text/brand_title_text_with_verification_ic
 import 'package:e_shop/features/shop/models/brand_model.dart';
 import 'package:e_shop/utils/constants/colors.dart';
 import 'package:e_shop/utils/constants/enums.dart';
-import 'package:e_shop/utils/constants/image_strings.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';

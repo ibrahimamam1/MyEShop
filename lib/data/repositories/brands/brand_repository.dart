@@ -24,4 +24,35 @@ class BrandRepository extends GetxController {
       rethrow;
     }
   }
+
+  //Get Brands for Categories
+  Future<List<BrandModel>> getBrandsForCategory(String categoryId) async {
+    try {
+      QuerySnapshot brandCategoryQuery = await _db
+          .collection('BrandCategory')
+          .where('CategoryId', isEqualTo: categoryId)
+          .get();
+
+      List<String> brandIds = brandCategoryQuery.docs
+          .map((doc) => doc['BrandId'] as String)
+          .toList();
+
+      final brandsQuery = await _db
+          .collection('Brands')
+          .where(FieldPath.documentId, whereIn: brandIds)
+          .limit(2)
+          .get();
+
+      List<BrandModel> brands =
+          brandsQuery.docs.map((doc) => BrandModel.fromSnapshot(doc)).toList();
+
+      return brands;
+    } on FirebaseException {
+      rethrow;
+    } on FormatException {
+      rethrow;
+    } on PlatformException {
+      rethrow;
+    }
+  }
 }

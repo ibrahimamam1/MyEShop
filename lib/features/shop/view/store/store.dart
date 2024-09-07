@@ -8,6 +8,7 @@ import 'package:e_shop/common/widgets/text/section_heading.dart';
 import 'package:e_shop/features/shop/controller/category_controller.dart';
 import 'package:e_shop/features/shop/controller/products/brand_controller.dart';
 import 'package:e_shop/features/shop/view/brands/all_brands.dart';
+import 'package:e_shop/features/shop/view/brands/brand_product.dart';
 import 'package:e_shop/features/shop/view/store/widgets/category_tab.dart';
 import 'package:e_shop/utils/constants/colors.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
@@ -78,8 +79,9 @@ class StoreScreen extends StatelessWidget {
 
                         //Brands Grid
                         Obx(() {
-                          if (brandController.isLoading.value)
-                            return CircularProgressIndicator();
+                          if (brandController.isLoading.value) {
+                            return const CircularProgressIndicator();
+                          }
 
                           if (brandController.featuredBrands.isEmpty) {
                             return Center(
@@ -96,7 +98,11 @@ class StoreScreen extends StatelessWidget {
                                 final brand =
                                     brandController.featuredBrands[index];
                                 return AppBrandCard(
-                                    showBorder: true, brand: brand);
+                                  showBorder: true,
+                                  brand: brand,
+                                  onTap: () =>
+                                      Get.to(() => BrandProducts(brand: brand)),
+                                );
                               });
                         })
                       ],

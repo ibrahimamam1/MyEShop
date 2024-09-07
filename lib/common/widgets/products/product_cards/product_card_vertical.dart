@@ -56,22 +56,23 @@ class AppProductCardVertical extends StatelessWidget {
                   ),
 
                   //sale tag
-                  Positioned(
-                    top: 12,
-                    child: AppCircularContainer(
-                      radius: AppSizes.sm,
-                      backgroundColor: AppColors.secondary,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: AppSizes.sm, vertical: AppSizes.xs),
-                      child: Text(
-                        '$discountPercentage',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge!
-                            .apply(color: AppColors.black),
+                  if (discountPercentage != null)
+                    Positioned(
+                      top: 12,
+                      child: AppCircularContainer(
+                        radius: AppSizes.sm,
+                        backgroundColor: AppColors.secondary,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppSizes.sm, vertical: AppSizes.xs),
+                        child: Text(
+                          discountPercentage,
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelLarge!
+                              .apply(color: AppColors.black),
+                        ),
                       ),
                     ),
-                  ),
 
                   //favorite icon button
                   const Positioned(
