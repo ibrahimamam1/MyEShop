@@ -3,7 +3,7 @@ import 'package:e_shop/common/widgets/custom_shapes/containers/search_container.
 import 'package:e_shop/common/widgets/layouts/grid_layout.dart';
 import 'package:e_shop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:e_shop/common/widgets/text/section_heading.dart';
-import 'package:e_shop/features/shop/controller/product_controller.dart';
+import 'package:e_shop/features/shop/controller/products/product_controller.dart';
 import 'package:e_shop/features/shop/view/all_products/all_products.dart';
 import 'package:e_shop/features/shop/view/home/widgets/home_app_bar.dart';
 import 'package:e_shop/features/shop/view/home/widgets/home_category.dart';
@@ -67,7 +67,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Obx(() {
                         if (controller.isLoading.value) {
-                          return const ShimmerLoadingEffect(width: 200, height: 200);
+                          return const ShimmerLoadingEffect(
+                              width: 200, height: 200);
                         }
 
                         if (controller.featuredProducts.isEmpty) {

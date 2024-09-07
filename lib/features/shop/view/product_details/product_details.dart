@@ -25,7 +25,7 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             //1- Product Image Slider
-            const ProductImageSlider(),
+            ProductImageSlider(product: product),
 
             //2-Product Details
             Padding(
@@ -39,11 +39,13 @@ class ProductDetailScreen extends StatelessWidget {
                     const AppRatingAndShare(),
 
                     //price , title, Stack, & brand
-                    const AppProductMetaData(),
+                    AppProductMetaData(product: product),
 
                     //Attributes
-                    const AppProductAttributes(),
-                    const SizedBox(height: AppSizes.spaceBtwSections),
+                    if (product.productType == 'variable')
+                      AppProductAttributes(product),
+                    if (product.productType == 'variable')
+                      const SizedBox(height: AppSizes.spaceBtwSections),
 
                     //Checkout Button
                     SizedBox(
@@ -58,16 +60,16 @@ class ProductDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: AppSizes.spaceBtwItems),
 
-                    const ReadMoreText(
-                      'This is a product description for green nike shoes. There are some things that can added ',
+                    ReadMoreText(
+                      product.description ?? '',
                       trimLines: 2,
                       trimMode: TrimMode.Line,
                       trimCollapsedText: 'Show More',
                       trimExpandedText: 'Less',
                       moreStyle:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                          const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                       lessStyle:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                          const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                     ),
 
                     //Reviews

@@ -3,19 +3,24 @@ import 'package:e_shop/common/widgets/images/app_circular_image.dart';
 import 'package:e_shop/common/widgets/products/product_cards/product_price.dart';
 import 'package:e_shop/common/widgets/text/brand_title_text_with_verification_icon.dart';
 import 'package:e_shop/common/widgets/text/product_title_text.dart';
+import 'package:e_shop/features/shop/controller/products/product_controller.dart';
+import 'package:e_shop/features/shop/models/product_model.dart';
 import 'package:e_shop/utils/constants/colors.dart';
 import 'package:e_shop/utils/constants/enums.dart';
-import 'package:e_shop/utils/constants/image_strings.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 class AppProductMetaData extends StatelessWidget {
-  const AppProductMetaData({super.key});
+  AppProductMetaData({super.key, required this.product});
+  ProductModel product;
 
   @override
   Widget build(BuildContext context) {
     final darkMode = AppHelperFunctions.isDarkMode(context);
+    final controller = ProductController.instance;
+    final discountPercentage =
+        controller.calculateSalePercentage(product.price, product.salePrice);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +35,7 @@ class AppProductMetaData extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
                   horizontal: AppSizes.sm, vertical: AppSizes.xs),
               child: Text(
-                '25%',
+                '$discountPercentage%',
                 style: Theme.of(context)
                     .textTheme
                     .labelLarge!
@@ -41,18 +46,18 @@ class AppProductMetaData extends StatelessWidget {
               width: AppSizes.spaceBtwItems,
             ),
             //price
-            Text(
-              '\$250',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall!
-                  .apply(decoration: TextDecoration.lineThrough),
-            ),
-            const SizedBox(
-              width: AppSizes.spaceBtwItems,
-            ),
-            const AppProductPrice(
-              price: '150',
+            if (product.productType == 'single' && product.salePrice > 0)
+              Text(
+                '\$$product.price',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall!
+                    .apply(decoration: TextDecoration.lineThrough),
+              ),
+            if (product.productType == 'single' && product.salePrice > 0)
+              const SizedBox(width: AppSizes.spaceBtwItems),
+            AppProductPrice(
+              price: controller.getProductPrice(product),
               isLarge: true,
             ),
           ],
@@ -62,7 +67,7 @@ class AppProductMetaData extends StatelessWidget {
         ),
 
         //Title
-        const AppProductTitleText(title: 'Green Nike Sports Shirt'),
+        AppProductTitleText(title: product.title),
         const SizedBox(
           height: AppSizes.spaceBtwItems / 1.5,
         ),
@@ -75,7 +80,7 @@ class AppProductMetaData extends StatelessWidget {
               width: AppSizes.spaceBtwItems,
             ),
             Text(
-              'In Stock',
+              controller.getProductStockStatus(product.stock),
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ],
@@ -89,13 +94,13 @@ class AppProductMetaData extends StatelessWidget {
         Row(
           children: [
             AppCircularImage(
-              image: AppImages.cosmeticsIcon,
+              image: product.brand != null ? product.brand!.image : '',
               width: 32,
               height: 32,
               overlayColor: darkMode ? AppColors.white : AppColors.black,
             ),
-            const AppBrandTitleTextWithVerifiedIcon(
-              title: 'Nike',
+            AppBrandTitleTextWithVerifiedIcon(
+              title: product.brand != null ? product.brand!.name : '',
               brandTextSize: TextSizes.medium,
             ),
           ],
