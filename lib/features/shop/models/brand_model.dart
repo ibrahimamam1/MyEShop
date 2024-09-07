@@ -1,3 +1,5 @@
+import 'package:e_shop/common/widgets/loaders/loaders.dart';
+
 class BrandModel {
   String id;
   String name;
@@ -31,6 +33,6 @@ class BrandModel {
   factory BrandModel.fromJson(Map<String, dynamic> document) {
     final data = document;
     if (data.isEmpty) return BrandModel.empty();
-    return BrandModel(id: data['Id'], image: data['Name'], name: data['Name']);
+    return BrandModel(id: data['Id'], image: data['Image'], name: data['Name']);
   }
 }

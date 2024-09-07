@@ -6,7 +6,6 @@ import 'package:e_shop/common/widgets/images/app_rounded_image.dart';
 import 'package:e_shop/features/shop/controller/products/images_controller.dart';
 import 'package:e_shop/features/shop/models/product_model.dart';
 import 'package:e_shop/utils/constants/colors.dart';
-import 'package:e_shop/utils/constants/image_strings.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -33,13 +32,14 @@ class ProductImageSlider extends StatelessWidget {
             SizedBox(
               height: 400,
               child: Padding(
-                  padding: const EdgeInsets.all(AppSizes.productImageRadius * 2),
+                  padding:
+                      const EdgeInsets.all(AppSizes.productImageRadius * 2),
                   child: Center(child: Obx(() {
                     final image = controller.selectedProductImage.value;
                     return GestureDetector(
                       onTap: () => controller.showEnlargedImage(image),
                       child: CachedNetworkImage(
-                          imageUrl: AppImages.productImage1,
+                          imageUrl: controller.selectedProductImage.value,
                           progressIndicatorBuilder: (_, __, downloadProgress) =>
                               CircularProgressIndicator(
                                   value: downloadProgress.progress,
@@ -68,9 +68,8 @@ class ProductImageSlider extends StatelessWidget {
                               images[index];
                       return AppRoundedImage(
                           isNetworkImage: true,
-                          onPressed: () =>
-                              controller.selectedProductImage.value ==
-                              images[index],
+                          onPressed: () => controller
+                              .selectedProductImage.value = images[index],
                           width: 80,
                           backgroundColor:
                               dark ? AppColors.dark : AppColors.white,

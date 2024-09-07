@@ -49,7 +49,7 @@ class ProductModel {
       'Title': title,
       'Stock': stock,
       'Price': price,
-      'Imaged': images ?? [],
+      'Images': images ?? [],
       'Thumbnail': thumbnail,
       'SalePrice': salePrice,
       'IsFeatured': isFeatured,
@@ -83,7 +83,7 @@ class ProductModel {
         salePrice: double.parse((data['SalePrice'] ?? 0.0).toString()),
         sku: data['Sku'] ?? '',
         categoryId: data['CategoryId'] ?? '',
-        images: data['images'] != null ? List<String>.from(data['Images']) : [],
+        images: data['Images'] != null ? List<String>.from(data['Images']) : [],
         productVariations: (data['ProductVariations'] as List<dynamic>)
             .map((e) => ProductVariationModel.fromJson(e))
             .toList(),

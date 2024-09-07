@@ -43,7 +43,7 @@ class ProductDetailScreen extends StatelessWidget {
 
                     //Attributes
                     if (product.productType == 'variable')
-                      AppProductAttributes(product),
+                      AppProductAttributes(product: product),
                     if (product.productType == 'variable')
                       const SizedBox(height: AppSizes.spaceBtwSections),
 
@@ -66,10 +66,10 @@ class ProductDetailScreen extends StatelessWidget {
                       trimMode: TrimMode.Line,
                       trimCollapsedText: 'Show More',
                       trimExpandedText: 'Less',
-                      moreStyle:
-                          const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                      lessStyle:
-                          const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                      moreStyle: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w800),
+                      lessStyle: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w800),
                     ),
 
                     //Reviews

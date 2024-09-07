@@ -94,6 +94,7 @@ class AppProductMetaData extends StatelessWidget {
         Row(
           children: [
             AppCircularImage(
+              isNetworkImage: true,
               image: product.brand != null ? product.brand!.image : '',
               width: 32,
               height: 32,
