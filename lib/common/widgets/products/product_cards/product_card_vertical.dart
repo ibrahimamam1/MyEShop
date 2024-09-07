@@ -2,7 +2,6 @@ import 'package:e_shop/common/styles/shadow_styles.dart';
 import 'package:e_shop/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:e_shop/common/widgets/icons/circular_icon.dart';
 import 'package:e_shop/common/widgets/images/app_rounded_image.dart';
-import 'package:e_shop/common/widgets/loaders/loaders.dart';
 import 'package:e_shop/common/widgets/products/product_cards/product_price.dart';
 import 'package:e_shop/common/widgets/text/brand_title_text_with_verification_icon.dart';
 import 'package:e_shop/common/widgets/text/product_title_text.dart';

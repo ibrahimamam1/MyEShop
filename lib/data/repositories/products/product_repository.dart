@@ -29,4 +29,42 @@ class ProductRepository extends GetxController {
       throw e.toString();
     }
   }
+
+  // Get limited featured products
+  Future<List<ProductModel>> getAllFeaturedProducts() async {
+    try {
+      final snapshot = await _db
+          .collection('Products')
+          .where('IsFeatured', isEqualTo: true)
+          .get();
+
+      return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
+    } on FirebaseException {
+      rethrow;
+    } on PlatformException {
+      rethrow;
+    } catch (e) {
+      debugPrint(e.toString());
+      throw e.toString();
+    }
+  }
+
+  // Get Products based on brands
+  Future<List<ProductModel>> fetchProductsByQuery(Query query) async {
+    try {
+      final querySnapshop = await query.get();
+      final List<ProductModel> productList = querySnapshop.docs
+          .map((doc) => ProductModel.fromQuerySnapshot(doc))
+          .toList();
+
+      return productList;
+    } on FirebaseException {
+      rethrow;
+    } on PlatformException {
+      rethrow;
+    } catch (e) {
+      debugPrint(e.toString());
+      throw e.toString();
+    }
+  }
 }

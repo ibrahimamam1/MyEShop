@@ -19,7 +19,7 @@ class BrandProducts extends StatelessWidget {
               //Brand Detail
               AppBrandCard(showBorder: true),
               SizedBox(height: AppSizes.spaceBtwSections),
-              AppSortableProducts(),
+              AppSortableProducts(products: [])
             ],
           ),
         ),

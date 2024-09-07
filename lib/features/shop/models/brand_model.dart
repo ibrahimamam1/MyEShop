@@ -1,4 +1,3 @@
-import 'package:e_shop/common/widgets/loaders/loaders.dart';
 
 class BrandModel {
   String id;

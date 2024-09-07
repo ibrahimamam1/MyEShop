@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_shop/common/widgets/loaders/loaders.dart';
 import 'package:e_shop/features/shop/models/product_model.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';

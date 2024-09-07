@@ -48,7 +48,7 @@ class AppProductMetaData extends StatelessWidget {
             //price
             if (product.productType == 'single' && product.salePrice > 0)
               Text(
-                '\$$product.price',
+                '\$${product.price}',
                 style: Theme.of(context)
                     .textTheme
                     .titleSmall!
