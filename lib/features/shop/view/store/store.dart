@@ -6,6 +6,7 @@ import 'package:e_shop/common/widgets/layouts/grid_layout.dart';
 import 'package:e_shop/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:e_shop/common/widgets/text/section_heading.dart';
 import 'package:e_shop/features/shop/controller/category_controller.dart';
+import 'package:e_shop/features/shop/controller/products/brand_controller.dart';
 import 'package:e_shop/features/shop/view/brands/all_brands.dart';
 import 'package:e_shop/features/shop/view/store/widgets/category_tab.dart';
 import 'package:e_shop/utils/constants/colors.dart';
@@ -20,6 +21,7 @@ class StoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categories = CategoryController.instance.featuredCategories;
+    final brandController = Get.put(BrandController());
     final dark = AppHelperFunctions.isDarkMode(context);
     return DefaultTabController(
       length: categories.length,
@@ -74,14 +76,29 @@ class StoreScreen extends StatelessWidget {
                           height: AppSizes.spaceBtwItems / 1.5,
                         ),
 
-                        AppGridLayout(
-                            itemcount: 4,
-                            mainAxisExtent: 80,
-                            itemBuilder: (_, index) {
-                              return const AppBrandCard(
-                                showBorder: true,
-                              );
-                            })
+                        //Brands Grid
+                        Obx(() {
+                          if (brandController.isLoading.value)
+                            return CircularProgressIndicator();
+
+                          if (brandController.featuredBrands.isEmpty) {
+                            return Center(
+                                child: Text('No Data Found',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .apply(color: Colors.white)));
+                          }
+                          return AppGridLayout(
+                              itemcount: brandController.featuredBrands.length,
+                              mainAxisExtent: 80,
+                              itemBuilder: (_, index) {
+                                final brand =
+                                    brandController.featuredBrands[index];
+                                return AppBrandCard(
+                                    showBorder: true, brand: brand);
+                              });
+                        })
                       ],
                     ),
                   ),
