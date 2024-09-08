@@ -9,7 +9,7 @@ class AppLoaders {
       ScaffoldMessenger.of(Get.context!).hideCurrentSnackBar();
 
   static customToast({required message}) {
-    SnackBar(
+    final snackbar = SnackBar(
       elevation: 0,
       duration: const Duration(seconds: 3),
       backgroundColor: Colors.transparent,
@@ -26,6 +26,9 @@ class AppLoaders {
                 style: Theme.of(Get.context!).textTheme.labelLarge)),
       ),
     );
+
+    // Show the snackbar
+    ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar);
   }
 
   static sucessSnackBar({required title, message = '', duration = 3}) {

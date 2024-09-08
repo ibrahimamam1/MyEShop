@@ -2,9 +2,10 @@ import 'package:e_shop/common/widgets/appBar/appbar.dart';
 import 'package:e_shop/common/widgets/icons/circular_icon.dart';
 import 'package:e_shop/common/widgets/layouts/grid_layout.dart';
 import 'package:e_shop/common/widgets/products/product_cards/product_card_vertical.dart';
-import 'package:e_shop/features/shop/models/product_model.dart';
+import 'package:e_shop/features/shop/controller/products/favourites_controller.dart';
 import 'package:e_shop/features/shop/view/home/home.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
+import 'package:e_shop/utils/helpers/cloud_helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -14,6 +15,7 @@ class FavouriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(FavouritesController());
     return Scaffold(
       appBar: SAppBar(
         title: Text(
@@ -32,11 +34,26 @@ class FavouriteScreen extends StatelessWidget {
           padding: const EdgeInsets.all(AppSizes.defaultSpace),
           child: Column(
             children: [
-              AppGridLayout(
-                  itemcount: 4,
-                  itemBuilder: (_, index) => AppProductCardVertical(
-                        product: ProductModel.empty(),
-                      ))
+              Obx(
+                () => FutureBuilder(
+                    future: controller.fetchFavoriteProductsFromDatabase(),
+                    builder: (context, snapshot) {
+                      //Todo : Add Appropriate Loader
+                      final widget =
+                          AppCloudHelperFunctions.checkMultiRecordState(
+                              snapshot: snapshot);
+
+                      if (widget != null) return widget;
+
+                      //otherwise data found
+                      final products = snapshot.data!;
+                      return AppGridLayout(
+                          itemcount: products.length,
+                          itemBuilder: (_, index) => AppProductCardVertical(
+                                product: products[index],
+                              ));
+                    }),
+              )
             ],
           ),
         ),

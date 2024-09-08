@@ -3,6 +3,7 @@ import 'package:e_shop/features/authentication/view/login/login.dart';
 import 'package:e_shop/features/authentication/view/onboarding/onboarding.dart';
 import 'package:e_shop/features/authentication/view/signup/verify_email.dart';
 import 'package:e_shop/navigation_menu.dart';
+import 'package:e_shop/utils/local_storage/storage_utility.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -32,6 +33,9 @@ class AuthenticationRepository extends GetxController {
     final user = _auth.currentUser;
     if (user != null) {
       if (user.emailVerified) {
+        //Initialise user specific local storage
+        await AppLocalStorage.init(user.uid);
+
         Get.offAll(() => const NavigationMenu());
       } else {
         Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser?.email));
