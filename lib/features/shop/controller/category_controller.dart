@@ -45,13 +45,30 @@ class CategoryController extends GetxController {
   }
 
   /// Load Selected Category Data
-  /// Get Category or Sub Category Products.
+  Future<List<CategoryModel>> getSubCategories(String categoryId) async {
+    try {
+      final subCategories =
+          await _categoryRepository.getSubCategories(categoryId);
+      return subCategories;
+    } catch (e) {
+      AppLoaders.errorSnackBar(
+          title: 'Error getting Sub Categories', message: e.toString());
+      return [];
+    }
+  }
 
+  /// Get Category or Sub Category Products
   Future<List<ProductModel>> getCategoryProducts(
       {required String categoryId, int limit = 4}) async {
-    final products = await ProductRepository.instance
-        .fetchProductsForCategory(categoryId: categoryId, limit: limit);
+    try {
+      final products = await ProductRepository.instance
+          .fetchProductsForCategory(categoryId: categoryId, limit: limit);
 
-    return products;
+      return products;
+    } catch (e) {
+      AppLoaders.errorSnackBar(
+          title: 'Error Fetching Category Products', message: e.toString());
+      return [];
+    }
   }
 }
