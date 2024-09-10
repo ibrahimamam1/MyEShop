@@ -8,8 +8,13 @@ import 'package:iconsax/iconsax.dart';
 class AppProductQuantityWithAddAndRemoveButtons extends StatelessWidget {
   const AppProductQuantityWithAddAndRemoveButtons({
     super.key,
+    required this.quantity,
+    this.add,
+    this.remove,
   });
 
+  final int quantity;
+  final VoidCallback? add, remove;
   @override
   Widget build(BuildContext context) {
     final bool dark = AppHelperFunctions.isDarkMode(context);
@@ -23,17 +28,20 @@ class AppProductQuantityWithAddAndRemoveButtons extends StatelessWidget {
           size: AppSizes.md,
           color: dark ? AppColors.white : AppColors.dark,
           backgroundColor: dark ? AppColors.darkerGrey : AppColors.light,
+          onPressed: remove,
         ),
         const SizedBox(width: AppSizes.spaceBtwItems),
-        Text('2', style: Theme.of(context).textTheme.titleSmall),
+        Text(quantity.toString(),
+            style: Theme.of(context).textTheme.titleSmall),
         const SizedBox(width: AppSizes.spaceBtwItems),
-        const AppCircularIcon(
+        AppCircularIcon(
           icon: Iconsax.add,
           width: 32,
           height: 32,
           size: AppSizes.md,
           color: AppColors.white,
           backgroundColor: AppColors.primary,
+          onPressed: add,
         ),
       ],
     );

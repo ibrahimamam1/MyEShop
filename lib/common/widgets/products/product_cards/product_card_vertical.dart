@@ -3,6 +3,7 @@ import 'package:e_shop/common/widgets/custom_shapes/containers/circular_containe
 import 'package:e_shop/common/widgets/images/app_rounded_image.dart';
 import 'package:e_shop/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:e_shop/common/widgets/products/product_cards/product_price.dart';
+import 'package:e_shop/common/widgets/products/product_cards/widgets/add_to_cart_button.dart';
 import 'package:e_shop/common/widgets/text/brand_title_text_with_verification_icon.dart';
 import 'package:e_shop/common/widgets/text/product_title_text.dart';
 import 'package:e_shop/features/shop/controller/products/product_controller.dart';
@@ -13,7 +14,6 @@ import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 
 class AppProductCardVertical extends StatelessWidget {
   const AppProductCardVertical({super.key, required this.product});
@@ -136,24 +136,7 @@ class AppProductCardVertical extends StatelessWidget {
                 ),
 
                 //Add to Cart Button
-                Container(
-                  decoration: const BoxDecoration(
-                      color: AppColors.dark,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(AppSizes.cardRadiusMd),
-                          bottomRight:
-                              Radius.circular(AppSizes.productImageRadius))),
-                  child: const SizedBox(
-                    width: AppSizes.iconLg * 1.2,
-                    height: AppSizes.iconLg * 1.2,
-                    child: Center(
-                      child: Icon(
-                        Iconsax.add,
-                        color: AppColors.white,
-                      ),
-                    ),
-                  ),
-                )
+                ProductAddTocartButton(product: product)
               ],
             )
           ],

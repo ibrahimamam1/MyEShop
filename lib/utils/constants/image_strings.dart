@@ -62,6 +62,8 @@ class AppImages {
       "assets/images/animations/141594-animation-of-docer.json";
   static const String successfullyRegisteredAnimation =
       "assets/images/animations/72462-check-register.json";
+  static const String cartAnimation =
+      "assets/images/animations/lady-adding-product-in-cart-animation.json";
 
   // -- OnBoarding Images
   static const String onBoardingImage1 =
