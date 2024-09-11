@@ -53,6 +53,21 @@ class AddressModel {
     };
   }
 
+  factory AddressModel.fromMap(Map<String, dynamic> data) {
+    return AddressModel(
+      id: data['Id'] as String,
+      name: data['Name'] as String,
+      phoneNumber: data['PhoneNumber'] as String,
+      street: data['Street'] as String,
+      city: data['City'] as String,
+      state: data['State'] as String,
+      postalCode: data['PostalCode'] as String,
+      country: data['Country'] as String,
+      dateTime: (data['DateTime'] as Timestamp).toDate(),
+      selectedAddress: data['SelectedAddress'] as bool,
+    );
+  }
+
   factory AddressModel.fromDocumentSnapshot(DocumentSnapshot snapshot) {
     final data = snapshot.data() as Map<String, dynamic>;
     return AddressModel(

@@ -1,15 +1,17 @@
 import 'package:e_shop/common/widgets/appBar/appbar.dart';
 import 'package:e_shop/common/widgets/custom_shapes/containers/circular_container.dart';
+import 'package:e_shop/common/widgets/loaders/loaders.dart';
 import 'package:e_shop/common/widgets/products/cart/coupon_widget.dart';
-import 'package:e_shop/common/widgets/succes_screens/success_screen.dart';
+import 'package:e_shop/features/shop/controller/products/cart_controller.dart';
+import 'package:e_shop/features/shop/controller/products/order_controller.dart';
 import 'package:e_shop/features/shop/view/cart/widgets/all_cart_tems.dart';
+import 'package:e_shop/features/shop/view/checkout/billing_adress_section.dart';
 import 'package:e_shop/features/shop/view/checkout/billing_amount_section.dart';
 import 'package:e_shop/features/shop/view/checkout/billing_payment_section.dart';
-import 'package:e_shop/navigation_menu.dart';
 import 'package:e_shop/utils/constants/colors.dart';
-import 'package:e_shop/utils/constants/image_strings.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:e_shop/utils/helpers/helper_functions.dart';
+import 'package:e_shop/utils/helpers/pricing_calculator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,6 +21,11 @@ class CheckOutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = AppHelperFunctions.isDarkMode(context);
+    final cartController = CartController.instance;
+    final orderController = Get.put(OrderController());
+    final subtotal = cartController.totalCartPrice.value;
+    final totalAmount =
+        AppPricingCalculator.calculateTotalPrice(subtotal, 'US');
     return Scaffold(
       appBar: SAppBar(
         showBackArrow: true,
@@ -57,6 +64,7 @@ class CheckOutScreen extends StatelessWidget {
                     AppBillingPaymentSection(),
 
                     //Address
+                    AppBillingAdressSection()
                   ],
                 ),
               )
@@ -68,12 +76,11 @@ class CheckOutScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(AppSizes.defaultSpace),
         child: ElevatedButton(
-            onPressed: () => Get.to(() => SuccessScreen(
-                image: AppImages.successfulPaymentIcon,
-                title: 'Payment Sucessfull',
-                subtitle: "Your Item Will be Shipped Soon",
-                onPressed: () => Get.offAll(() => const NavigationMenu()))),
-            child: const Text('Checkout \$256.8')),
+            onPressed: subtotal > 0
+                ? () => orderController.processOrder(totalAmount)
+                : AppLoaders.errorSnackBar(
+                    title: 'Empty Cart', message: 'Add items in the cart'),
+            child: Text('Checkout \$$totalAmount')),
       ),
     );
   }

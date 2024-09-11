@@ -1,7 +1,12 @@
 import 'package:e_shop/common/widgets/loaders/loaders.dart';
+import 'package:e_shop/common/widgets/text/section_heading.dart';
 import 'package:e_shop/data/repositories/personalisation/address_repository.dart';
 import 'package:e_shop/features/personalisation/models/adress_model.dart';
+import 'package:e_shop/features/personalisation/views/addresses/widgets/add_new_adress.dart';
+import 'package:e_shop/features/personalisation/views/addresses/widgets/signle_user_adress.dart';
 import 'package:e_shop/utils/constants/image_strings.dart';
+import 'package:e_shop/utils/constants/sizes.dart';
+import 'package:e_shop/utils/helpers/cloud_helper_functions.dart';
 import 'package:e_shop/utils/network/network_manager.dart';
 import 'package:e_shop/utils/popups/full_screen_loader.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +63,47 @@ class AddressController extends GetxController {
       AppLoaders.errorSnackBar(
           title: 'Error in Selection', message: e.toString());
     }
+  }
+
+  ///Show Address ModalBottomSheet at Checkout
+  Future<dynamic> selectNewAddressPopup(BuildContext context) {
+    return showModalBottomSheet(
+        context: context,
+        builder: (_) => Container(
+              padding: const EdgeInsets.all(AppSizes.lg),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const AppSectionHeading(title: 'Select Address'),
+                  FutureBuilder(
+                      future: getAllUserAddresses(),
+                      builder: (_, snapshot) {
+                        final widget =
+                            AppCloudHelperFunctions.checkMultiRecordState(
+                                snapshot: snapshot);
+
+                        if (widget != null) return widget;
+
+                        //otherwise dataFound
+                        return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (_, index) => AppSingleUserAdress(
+                                address: snapshot.data![index],
+                                onTap: () async {
+                                  selectedAddress(snapshot.data![index]);
+                                  Get.back();
+                                }));
+                      }),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                        onPressed: () => Get.to(() => const AddNewAdressScreen()),
+                        child: const Text('Add new Address')),
+                  )
+                ],
+              ),
+            ));
   }
 
   //Add New Adress
