@@ -33,7 +33,7 @@ class AuthenticationRepository extends GetxController {
   void onReady() {
     FlutterNativeSplash.remove();
     screenRedirect();
-    productRepository.uploadDummyProducts();
+    //productRepository.uploadDummyProducts();
   }
 
   //Function to switch to relevant Screen

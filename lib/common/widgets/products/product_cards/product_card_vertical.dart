@@ -114,8 +114,8 @@ class AppProductCardVertical extends StatelessWidget {
                 //price
                 Flexible(
                   child: Column(children: [
-                    if (product.productType == 'single' &&
-                        product.salePrice > 0)
+                    if (product.productType == 'Single' &&
+                        product.salePrice != product.price)
                       Padding(
                         padding: const EdgeInsets.only(left: AppSizes.sm),
                         child: Text(

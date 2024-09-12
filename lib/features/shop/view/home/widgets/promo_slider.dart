@@ -6,6 +6,7 @@ import 'package:e_shop/utils/constants/colors.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class AppPromoSlider extends StatelessWidget {
   const AppPromoSlider({
@@ -16,6 +17,18 @@ class AppPromoSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(BannerController());
     return Obx(() {
+      if (controller.isLoading.value)
+        return Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Container(
+            width: double.infinity,
+            height: 250,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(AppSizes.md)),
+          ),
+        );
       // No data
       if (controller.banners.isEmpty) {
         return const Center(child: Text('No Data Found!'));

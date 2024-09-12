@@ -68,17 +68,6 @@ class HomeScreen extends StatelessWidget {
                         height: AppSizes.spaceBtwItems,
                       ),
                       Obx(() {
-                        if (controller.isLoading.value) {
-                          return const ShimmerLoadingEffect(
-                              width: 200, height: 200);
-                        }
-
-                        if (controller.featuredProducts.isEmpty) {
-                          return Center(
-                              child: Text('No Data Found!',
-                                  style:
-                                      Theme.of(context).textTheme.bodyMedium));
-                        }
                         return AppGridLayout(
                           itemcount: controller.featuredProducts.length,
                           itemBuilder: (_, index) => AppProductCardVertical(

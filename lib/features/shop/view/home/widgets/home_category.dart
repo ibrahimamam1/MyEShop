@@ -1,3 +1,4 @@
+import 'package:e_shop/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:e_shop/common/widgets/image_text_widgets/vertical_image_text.dart';
 import 'package:e_shop/common/widgets/text/section_heading.dart';
 import 'package:e_shop/features/shop/controller/category_controller.dart';
@@ -7,6 +8,7 @@ import 'package:e_shop/utils/constants/colors.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class AppHomeCategories extends StatelessWidget {
   const AppHomeCategories({
@@ -30,7 +32,13 @@ class AppHomeCategories extends StatelessWidget {
           ),
           Obx(() {
             if (categoryController.isLoading.value) {
-              return const ShimmerLoadingEffect();
+              return Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: AppCircularContainer(
+                    width: 50,
+                    height: 50,
+                  ));
             }
             if (categoryController.featuredCategories.isEmpty) {
               return Center(

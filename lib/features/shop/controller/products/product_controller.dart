@@ -51,7 +51,7 @@ class ProductController extends GetxController {
     double smallestPrice = double.infinity;
     double largestPrice = 0.0;
 
-    if (product.productType == "single") {
+    if (product.productType == "Single") {
       return (product.salePrice > 0 ? product.salePrice : product.price)
           .toString();
     } else {
