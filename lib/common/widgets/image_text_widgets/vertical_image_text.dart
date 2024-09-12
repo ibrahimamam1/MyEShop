@@ -10,19 +10,18 @@ class AppVerticalImageText extends StatelessWidget {
     required this.image,
     required this.title,
     this.textColor = AppColors.white,
-    this.backgroundcolor = AppColors.white,
     this.isNetworkImage = true,
     this.onTap,
   });
 
   final String image, title;
   final Color textColor;
-  final Color? backgroundcolor;
   final void Function()? onTap;
   final bool isNetworkImage;
 
   @override
   Widget build(BuildContext context) {
+    final dark = AppHelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: onTap,
       child: Padding(
@@ -35,7 +34,7 @@ class AppVerticalImageText extends StatelessWidget {
               fit: BoxFit.fitWidth,
               padding: AppSizes.sm * 1.4,
               isNetworkImage: isNetworkImage,
-              backgroundColor: backgroundcolor,
+              backgroundColor: dark ? AppColors.darkerGrey : AppColors.primary,
               overlayColor: AppHelperFunctions.isDarkMode(context)
                   ? AppColors.light
                   : AppColors.dark,

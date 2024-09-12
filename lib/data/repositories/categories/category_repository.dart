@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/data/services/cloud_storage/firebase_storage_service.dart';
 import 'package:e_shop/features/shop/models/category_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryRepository extends GetxController {
@@ -16,6 +17,8 @@ class CategoryRepository extends GetxController {
       final list = snapshot.docs
           .map((document) => CategoryModel.fromSnapshot(document))
           .toList();
+
+      debugPrint('-------------${list.length}--------');
       return list;
     } on FirebaseException {
       rethrow;

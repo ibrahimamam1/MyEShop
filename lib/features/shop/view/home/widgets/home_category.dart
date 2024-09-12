@@ -15,7 +15,7 @@ class AppHomeCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categoryController = Get.put(CategoryController());
+    final categoryController = CategoryController.instance;
     return Padding(
       padding: const EdgeInsets.only(left: AppSizes.defaultSpace),
       child: Column(

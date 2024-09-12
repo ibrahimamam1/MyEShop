@@ -1,4 +1,5 @@
 import 'package:e_shop/features/personalisation/controllers/adress_controller.dart';
+import 'package:e_shop/features/shop/controller/category_controller.dart';
 import 'package:e_shop/features/shop/controller/checkout/checkout_controller.dart';
 import 'package:e_shop/features/shop/controller/products/variation_controller.dart';
 import 'package:e_shop/utils/network/network_manager.dart';
@@ -11,5 +12,6 @@ class GeneralBindings extends Bindings {
     Get.put(VariationController());
     Get.put(AddressController());
     Get.put(CheckoutController());
+    Get.put(CategoryController());
   }
 }
