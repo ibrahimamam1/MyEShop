@@ -9,6 +9,7 @@ import 'package:e_shop/utils/helpers/cloud_helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shimmer/shimmer.dart';
 
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({super.key});
@@ -38,10 +39,26 @@ class FavouriteScreen extends StatelessWidget {
                 () => FutureBuilder(
                     future: controller.fetchFavoriteProductsFromDatabase(),
                     builder: (context, snapshot) {
-                      //Todo : Add Appropriate Loader
+                      // Shimmer loader effect
+                      final shimmerLoader = Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: AppGridLayout(
+                          itemcount:
+                              4, // Adjust the number of shimmer items as needed
+                          itemBuilder: (_, __) => Container(
+                            height: 250,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                        ),
+                      );
+
                       final widget =
                           AppCloudHelperFunctions.checkMultiRecordState(
-                              snapshot: snapshot);
+                              snapshot: snapshot, loader: shimmerLoader);
 
                       if (widget != null) return widget;
 
