@@ -23,7 +23,8 @@ class OrderRepository extends GetxController {
           .map((documentSnapshot) => OrderModel.fromSnapshot(documentSnapshot))
           .toList();
     } catch (e) {
-      throw 'Something went wrong while fetching order information. Try again later';
+      final userId = AuthenticationRepository.instance.authUser?.uid;
+      throw 'Something went wrong while fetching order information';
     }
   }
 
