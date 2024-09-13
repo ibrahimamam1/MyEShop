@@ -1,13 +1,9 @@
-import 'package:e_shop/data/repositories/banners/banner_repository.dart';
 import 'package:e_shop/data/repositories/categories/category_repository.dart';
-import 'package:e_shop/data/repositories/products/product_repository.dart';
 import 'package:e_shop/data/repositories/user/user_repository.dart';
 import 'package:e_shop/features/authentication/view/login/login.dart';
 import 'package:e_shop/features/authentication/view/onboarding/onboarding.dart';
 import 'package:e_shop/features/authentication/view/signup/verify_email.dart';
-import 'package:e_shop/features/shop/models/category_model.dart';
 import 'package:e_shop/navigation_menu.dart';
-import 'package:e_shop/utils/constants/image_strings.dart';
 import 'package:e_shop/utils/local_storage/storage_utility.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
@@ -26,14 +22,14 @@ class AuthenticationRepository extends GetxController {
   //Return Authenticated User Data
   User? get authUser => _auth.currentUser;
 
-  final productRepository = ProductRepository();
+  final categoryRepository = CategoryRepository();
 
   //called automatically from main.dart on app launch
   @override
   void onReady() {
     FlutterNativeSplash.remove();
     screenRedirect();
-    //productRepository.uploadDummyProducts();
+    categoryRepository.uploadCategoryProductsDummyData();
   }
 
   //Function to switch to relevant Screen

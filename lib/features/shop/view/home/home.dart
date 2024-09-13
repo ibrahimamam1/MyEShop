@@ -8,7 +8,6 @@ import 'package:e_shop/features/shop/view/all_products/all_products.dart';
 import 'package:e_shop/features/shop/view/home/widgets/home_app_bar.dart';
 import 'package:e_shop/features/shop/view/home/widgets/home_category.dart';
 import 'package:e_shop/features/shop/view/home/widgets/promo_slider.dart';
-import 'package:e_shop/features/shop/view/home/widgets/shimmer_loading_effect.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

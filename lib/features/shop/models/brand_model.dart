@@ -38,7 +38,7 @@ class BrandModel {
         image: data['Image'] ?? '',
         name: data['Name'] ?? '',
         isFeatured: data['IsFeatured'] ?? false,
-        productsCount: int.parse((data['ProductsCount'] ?? 0).toString()));
+        productsCount: int.parse((data['Productscount'] ?? 0).toString()));
   }
 
   //Map Snapshot data to model
@@ -53,7 +53,7 @@ class BrandModel {
           id: document.id,
           image: data['Image'] ?? '',
           name: data['Name'] ?? '',
-          productsCount: data['ProductsCount'] ?? 0,
+          productsCount: data['Productscount'] ?? 0,
           isFeatured: data['IsFeatured'] ?? false);
     } else {
       return BrandModel.empty();

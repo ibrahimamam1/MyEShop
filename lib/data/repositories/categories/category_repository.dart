@@ -80,4 +80,37 @@ class CategoryRepository extends GetxController {
       throw 'Something went Wrong. Please try again';
     }
   }
+
+  Future<void> uploadCategoryProductsDummyData() async {
+    List<Map<String, String>> items = [
+      {'ProductId': '1', 'CategoryId': '1'},
+      {'ProductId': '12', 'CategoryId': '1'},
+      {'ProductId': '13', 'CategoryId': '1'},
+      {'ProductId': '5', 'CategoryId': '1'},
+      {'ProductId': '10', 'CategoryId': '2'},
+      {'ProductId': '11', 'CategoryId': '2'},
+      {'ProductId': '22', 'CategoryId': '2'},
+      {'ProductId': '8', 'CategoryId': '2'},
+      {'ProductId': '9', 'CategoryId': '2'},
+      {'ProductId': '16', 'CategoryId': '3'},
+      {'ProductId': '17', 'CategoryId': '3'},
+      {'ProductId': '18', 'CategoryId': '3'},
+      {'ProductId': '19', 'CategoryId': '3'},
+      {'ProductId': '20', 'CategoryId': '3'},
+      {'ProductId': '5', 'CategoryId': '3'},
+      {'ProductId': '6', 'CategoryId': '3'},
+      {'ProductId': '7', 'CategoryId': '3'},
+      {'ProductId': '14', 'CategoryId': '4'},
+      {'ProductId': '2', 'CategoryId': '4'},
+      {'ProductId': '21', 'CategoryId': '4'},
+      {'ProductId': '3', 'CategoryId': '4'},
+      {'ProductId': '4', 'CategoryId': '4'},
+    ];
+
+    int i = 1;
+    for (var item in items) {
+      _db.collection('ProductCategory').doc(i.toString()).set(item);
+      i++;
+    }
+  }
 }

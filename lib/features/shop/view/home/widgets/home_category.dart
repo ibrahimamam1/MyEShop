@@ -2,7 +2,6 @@ import 'package:e_shop/common/widgets/custom_shapes/containers/circular_containe
 import 'package:e_shop/common/widgets/image_text_widgets/vertical_image_text.dart';
 import 'package:e_shop/common/widgets/text/section_heading.dart';
 import 'package:e_shop/features/shop/controller/category_controller.dart';
-import 'package:e_shop/features/shop/view/home/widgets/shimmer_loading_effect.dart';
 import 'package:e_shop/features/shop/view/sub_category/sub_category.dart';
 import 'package:e_shop/utils/constants/colors.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
@@ -35,7 +34,7 @@ class AppHomeCategories extends StatelessWidget {
               return Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
-                  child: AppCircularContainer(
+                  child: const AppCircularContainer(
                     width: 50,
                     height: 50,
                   ));

@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/features/shop/models/brand_model.dart';
 import 'package:e_shop/features/shop/models/product_attribute_model.dart';
 import 'package:e_shop/features/shop/models/product_model.dart';
-import 'package:e_shop/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

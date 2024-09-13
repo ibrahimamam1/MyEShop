@@ -3,6 +3,7 @@ import 'package:e_shop/features/shop/controller/products/brand_controller.dart';
 import 'package:e_shop/features/shop/models/category_model.dart';
 import 'package:e_shop/utils/helpers/cloud_helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CategoryBrands extends StatelessWidget {
   const CategoryBrands({super.key, required this.category});
@@ -15,8 +16,6 @@ class CategoryBrands extends StatelessWidget {
     return FutureBuilder(
         future: controller.getBrandsForCategory(category.id),
         builder: (context, snapshot) {
-          //Todo : Add a nice Loader
-
           final widget =
               AppCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
           if (widget != null) return widget;
@@ -34,10 +33,21 @@ class CategoryBrands extends StatelessWidget {
                     future: controller.getBrandProducts(
                         brandId: brand.id, limit: 3),
                     builder: (context, snapshot) {
-                      //Todo: Add Nice Loader
+                      final shimmerLoader = Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Container(
+                          height: 50,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      );
                       final widget =
                           AppCloudHelperFunctions.checkMultiRecordState(
-                              snapshot: snapshot);
+                              snapshot: snapshot, loader: shimmerLoader);
 
                       if (widget != null) return widget;
 

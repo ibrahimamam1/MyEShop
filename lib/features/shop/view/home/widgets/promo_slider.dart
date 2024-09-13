@@ -17,7 +17,7 @@ class AppPromoSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(BannerController());
     return Obx(() {
-      if (controller.isLoading.value)
+      if (controller.isLoading.value) {
         return Shimmer.fromColors(
           baseColor: Colors.grey[300]!,
           highlightColor: Colors.grey[100]!,
@@ -29,6 +29,7 @@ class AppPromoSlider extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppSizes.md)),
           ),
         );
+      }
       // No data
       if (controller.banners.isEmpty) {
         return const Center(child: Text('No Data Found!'));
