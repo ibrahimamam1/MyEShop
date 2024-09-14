@@ -70,7 +70,8 @@ class SignupController extends GetxController {
         userName: userName.text.trim(),
         email: email.text.trim(),
         phoneNumber: phoneNumber.text.trim(),
-        profilePicture: '',
+        profilePicture:
+            'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProfile%2Fuser_img.jpg?alt=media&token=87f93642-fdd2-45ee-99f7-101c923b6230',
       );
 
       final userRepository = Get.put(UserRepository());
@@ -90,6 +91,7 @@ class SignupController extends GetxController {
           ));
     } catch (e) {
       //handle exception
+      AppFullscreenLoader.stopLoading();
       AppLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     }
   }

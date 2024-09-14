@@ -22,15 +22,11 @@ class AuthenticationRepository extends GetxController {
 
   //Return Authenticated User Data
   User? get authUser => _auth.currentUser;
-
-  final productRepository = ProductRepository();
-
   //called automatically from main.dart on app launch
   @override
   void onReady() {
     FlutterNativeSplash.remove();
     screenRedirect();
-    productRepository.uploadDummyProducts();
   }
 
   //Function to switch to relevant Screen

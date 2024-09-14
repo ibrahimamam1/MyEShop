@@ -2,7 +2,7 @@ import 'package:e_shop/common/widgets/custom_shapes/containers/circular_containe
 import 'package:e_shop/common/widgets/image_text_widgets/vertical_image_text.dart';
 import 'package:e_shop/common/widgets/text/section_heading.dart';
 import 'package:e_shop/features/shop/controller/category_controller.dart';
-import 'package:e_shop/features/shop/view/sub_category/sub_category.dart';
+import 'package:e_shop/features/shop/view/all_products/all_products.dart';
 import 'package:e_shop/utils/constants/colors.dart';
 import 'package:e_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -59,8 +59,11 @@ class AppHomeCategories extends StatelessWidget {
                     return AppVerticalImageText(
                       image: category.image,
                       title: category.name,
-                      onTap: () =>
-                          Get.to(() => SubCategoriesScreen(category: category)),
+                      onTap: () => Get.to(() => AllProductsScreen(
+                            futureMethod: categoryController
+                                .getCategoryProducts(categoryId: category.id),
+                            title: category.name,
+                          )),
                     );
                   }),
             );
