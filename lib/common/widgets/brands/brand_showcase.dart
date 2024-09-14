@@ -10,10 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppBrandShowCase extends StatelessWidget {
-  const AppBrandShowCase(
-      {super.key, required this.images, required this.brand});
+  const AppBrandShowCase({super.key, required this.brand});
 
-  final List<String> images;
   final BrandModel brand;
 
   @override
@@ -35,13 +33,6 @@ class AppBrandShowCase extends StatelessWidget {
               brand: brand,
             ),
             const SizedBox(height: AppSizes.spaceBtwItems),
-
-            //Brand Top3 Products
-            Row(
-                children: images
-                    .map((imageUrl) =>
-                        brandTopProductImageWidget(imageUrl, context))
-                    .toList()),
           ],
         ),
       ),

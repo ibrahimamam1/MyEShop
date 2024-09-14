@@ -77,11 +77,11 @@ class ProductRepository extends GetxController {
       final querySnapshop = limit == -1
           ? await _db
               .collection('Products')
-              .where('BrandId', isEqualTo: brandId)
+              .where('Brand.Id', isEqualTo: brandId)
               .get()
           : await _db
               .collection('Products')
-              .where('BrandId', isEqualTo: brandId)
+              .where('Brand.Id', isEqualTo: brandId)
               .limit(limit)
               .get();
 
@@ -172,7 +172,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2FAdidas_Football.png?alt=media&token=3203dfb2-c79a-4cda-9389-6cf1b518d8be',
         isFeatured: true,
-        brand: BrandModel(id: '', image: '', name: 'Adidas'),
+        brand: BrandModel(
+            id: '1',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fadidas-logo.png?alt=media&token=2e8971cc-9e45-407c-b1c3-8662358f5211',
+            name: 'Adidas'),
         description: 'High Quality Adidas Football',
         categoryId: '',
         productType: 'Single',
@@ -193,7 +197,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Fiphone8_mobile_back.png?alt=media&token=b69c3014-5e1d-46ce-94f4-087d9f80a9ee',
         isFeatured: false,
-        brand: BrandModel(id: '', image: '', name: 'Apple'),
+        brand: BrandModel(
+            id: '3',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fapple-logo.png?alt=media&token=01dc9392-07c5-4225-87dc-fd8f9dcc74ab',
+            name: 'Apple'),
         description: 'Apple iPhone 8 with advanced features',
         categoryId: '',
         productType: 'Single',
@@ -214,7 +222,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Fiphone_13_pro.png?alt=media&token=ec8a8b7b-f5a5-423e-b610-ab819cc7e407',
         isFeatured: true,
-        brand: BrandModel(id: '', image: '', name: 'Apple'),
+        brand: BrandModel(
+            id: '3',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fapple-logo.png?alt=media&token=01dc9392-07c5-4225-87dc-fd8f9dcc74ab',
+            name: 'Apple'),
         description: 'Latest iPhone 13 Pro with pro-grade cameras',
         categoryId: '',
         productType: 'Single',
@@ -237,7 +249,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Fiphone_14_pro.png?alt=media&token=cca768fd-432f-4695-813e-7ff1b4bb106f',
         isFeatured: true,
-        brand: BrandModel(id: '', image: '', name: 'Apple'),
+        brand: BrandModel(
+            id: '3',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fapple-logo.png?alt=media&token=01dc9392-07c5-4225-87dc-fd8f9dcc74ab',
+            name: 'Apple'),
         description:
             'The latest iPhone 14 Pro with advanced features and powerful performance',
         categoryId: '',
@@ -261,7 +277,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Fkitchen_counter.png?alt=media&token=94d5b6c1-a33e-4b67-8c68-8f350becf061',
         isFeatured: false,
-        brand: BrandModel(id: '', image: '', name: 'HomeStyle'),
+        brand: BrandModel(
+            id: '4',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fikea_logo.png?alt=media&token=8e9f9f87-19c3-4131-9bcd-6590b8987f68',
+            name: 'Ikea'),
         description: 'Modern kitchen counter with ample storage space',
         categoryId: '',
         productType: 'Single',
@@ -283,7 +303,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Fkitchen_dining%20table.png?alt=media&token=2aaaa27b-f4e3-46a1-81b4-14ad89eea200',
         isFeatured: true,
-        brand: BrandModel(id: '', image: '', name: 'DineElegant'),
+        brand: BrandModel(
+            id: '4',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fikea_logo.png?alt=media&token=8e9f9f87-19c3-4131-9bcd-6590b8987f68',
+            name: 'Ikea'),
         description: 'Stylish kitchen dining table for family gatherings',
         categoryId: '',
         productType: 'Single',
@@ -305,7 +329,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Fkitchen_refrigerator.png?alt=media&token=a78fb184-b60c-432c-915e-7c98f0636d59',
         isFeatured: true,
-        brand: BrandModel(id: '', image: '', name: 'CoolTech'),
+        brand: BrandModel(
+            id: '4',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fikea_logo.png?alt=media&token=8e9f9f87-19c3-4131-9bcd-6590b8987f68',
+            name: 'Ikea'),
         description: 'Spacious and energy-efficient kitchen refrigerator',
         categoryId: '',
         productType: 'Single',
@@ -328,7 +356,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Ftrcksuit_parrotgreen.png?alt=media&token=f515894b-4cac-498f-9cdb-dc10c054e798',
         isFeatured: false,
-        brand: BrandModel(id: '', image: '', name: 'SportyChic'),
+        brand: BrandModel(
+            id: '5',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fzara-logo.png?alt=media&token=f2b46ca4-b7b9-4015-8445-de9bf847ba49',
+            name: 'Zara'),
         description:
             'Comfortable parrot green tracksuit for sports and casual wear',
         categoryId: '',
@@ -350,7 +382,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Ftshirt_yellow_collar.png?alt=media&token=bd52b9a0-d7f6-4338-ab42-b6db8866df26',
         isFeatured: true,
-        brand: BrandModel(id: '', image: '', name: 'CasualWear'),
+        brand: BrandModel(
+            id: '5',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fzara-logo.png?alt=media&token=f2b46ca4-b7b9-4015-8445-de9bf847ba49',
+            name: 'Zara'),
         description: 'Stylish yellow collar t-shirt for a trendy look',
         categoryId: '',
         productType: 'Single',
@@ -372,7 +408,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2FNikeAirJordonSingleOrange.png?alt=media&token=7c3ad5ca-392b-4d1d-98b2-17a6f09cf19c',
         isFeatured: true,
-        brand: BrandModel(id: '', image: '', name: 'Nike'),
+        brand: BrandModel(
+            id: '6',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fnike.png?alt=media&token=748e0a36-e157-4218-8ce2-50497cd99b08',
+            name: 'Nike'),
         description: 'Iconic Nike Air Jordan in vibrant orange color',
         categoryId: '',
         productType: 'Single',
@@ -393,7 +433,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2FNikeAirMax.png?alt=media&token=17199b8e-105f-477b-9b15-4785b845d96c',
         isFeatured: false,
-        brand: BrandModel(id: '', image: '', name: 'Nike'),
+        brand: BrandModel(
+            id: '6',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fnike.png?alt=media&token=748e0a36-e157-4218-8ce2-50497cd99b08',
+            name: 'Nike'),
         description: 'Comfortable Nike Air Max for everyday wear',
         categoryId: '',
         productType: 'Single',
@@ -422,7 +466,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2FNikeBasketballShoeGreenBlack.png?alt=media&token=ec37b02a-3428-4ea2-a9dd-ae6926be8a6f',
         isFeatured: true,
-        brand: BrandModel(id: '', image: '', name: 'Nike'),
+        brand: BrandModel(
+            id: '6',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fnike.png?alt=media&token=748e0a36-e157-4218-8ce2-50497cd99b08',
+            name: 'Nike'),
         description: 'High-performance Nike basketball shoe in green and black',
         categoryId: '',
         productType: 'Single',
@@ -445,7 +493,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2FNikeWildhorse.png?alt=media&token=bec909f4-6cdd-4ff5-97f7-1495a5eccb06',
         isFeatured: false,
-        brand: BrandModel(id: '', image: '', name: 'Nike'),
+        brand: BrandModel(
+            id: '6',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fnike.png?alt=media&token=748e0a36-e157-4218-8ce2-50497cd99b08',
+            name: 'Nike'),
         description: 'Durable Nike Wildhorse trail running shoe',
         categoryId: '',
         productType: 'Single',
@@ -467,7 +519,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Facer_laptop_1.png?alt=media&token=252018bb-5f2d-4d86-9813-e6baa513aa51',
         isFeatured: true,
-        brand: BrandModel(id: '', image: '', name: 'Acer'),
+        brand: BrandModel(
+            id: '2',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Facer_logo.png?alt=media&token=4b110b32-e068-472a-9bc7-394a3848fe48',
+            name: 'Acer'),
         description: 'Powerful Acer laptop for work and entertainment',
         categoryId: '',
         productType: 'Single',
@@ -488,7 +544,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Fbaseball_bat.png?alt=media&token=024cbb8f-5260-4b7d-adae-ce5a45af2d05',
         isFeatured: false,
-        brand: BrandModel(id: '', image: '', name: 'SportsPro'),
+        brand: BrandModel(
+            id: '5',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fzara-logo.png?alt=media&token=f2b46ca4-b7b9-4015-8445-de9bf847ba49',
+            name: 'Zara'),
         description:
             'High-quality baseball bat for professional and amateur players',
         categoryId: '',
@@ -510,7 +570,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Fbedroom_bed.png?alt=media&token=84cb327f-120c-4bbf-8c44-8de723dc2f75',
         isFeatured: true,
-        brand: BrandModel(id: '', image: '', name: 'SleepWell'),
+        brand: BrandModel(
+            id: '4',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fikea_logo.png?alt=media&token=8e9f9f87-19c3-4131-9bcd-6590b8987f68',
+            name: 'Ikea'),
         description: 'Comfortable bedroom bed for a good night\'s sleep',
         categoryId: '',
         productType: 'Single',
@@ -531,7 +595,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Fbedroom_bed_black.png?alt=media&token=2d4acd6d-a21b-40af-b1a0-610080793954',
         isFeatured: false,
-        brand: BrandModel(id: '', image: '', name: 'SleepWell'),
+        brand: BrandModel(
+            id: '4',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fikea_logo.png?alt=media&token=8e9f9f87-19c3-4131-9bcd-6590b8987f68',
+            name: 'Ikea'),
         description: 'Stylish black bedroom bed for modern interiors',
         categoryId: '',
         productType: 'Single',
@@ -553,7 +621,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Fbedroom_lamp.png?alt=media&token=99cfdb57-631e-4289-8354-fa4eec6bdced',
         isFeatured: true,
-        brand: BrandModel(id: '', image: '', name: 'LightCraft'),
+        brand: BrandModel(
+            id: '4',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fikea_logo.png?alt=media&token=8e9f9f87-19c3-4131-9bcd-6590b8987f68',
+            name: 'Ikea'),
         description: 'Elegant bedroom lamp for ambient lighting',
         categoryId: '',
         productType: 'Single',
@@ -575,7 +647,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Fbedroom_sofa.png?alt=media&token=463c21f2-8d02-4245-a636-c6a7e80124c5',
         isFeatured: false,
-        brand: BrandModel(id: '', image: '', name: 'ComfyLiving'),
+        brand: BrandModel(
+            id: '4',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fikea_logo.png?alt=media&token=8e9f9f87-19c3-4131-9bcd-6590b8987f68',
+            name: 'Ikea'),
         description: 'Cozy bedroom sofa for relaxation and extra seating',
         categoryId: '',
         productType: 'Single',
@@ -597,7 +673,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Fbedroom_wardrobe.png?alt=media&token=061dba63-fb1d-47fb-a090-67d5c2439ec0',
         isFeatured: true,
-        brand: BrandModel(id: '', image: '', name: 'StorageMax'),
+        brand: BrandModel(
+            id: '4',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fikea_logo.png?alt=media&token=8e9f9f87-19c3-4131-9bcd-6590b8987f68',
+            name: 'Ikea'),
         description: 'Spacious bedroom wardrobe for organized storage',
         categoryId: '',
         productType: 'Single',
@@ -618,7 +698,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2Fiphone8_mobile.png?alt=media&token=3967b444-39cd-49ba-bc9b-455e91c3e9aa',
         isFeatured: false,
-        brand: BrandModel(id: '', image: '', name: 'Apple'),
+        brand: BrandModel(
+            id: '3',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fapple-logo.png?alt=media&token=01dc9392-07c5-4225-87dc-fd8f9dcc74ab',
+            name: 'Apple'),
         description: 'iPhone 8 with powerful features and sleek design',
         categoryId: '',
         productType: 'Single',
@@ -639,7 +723,11 @@ class ProductRepository extends GetxController {
         thumbnail:
             'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FProducts%2FNikeAirJordonSingleBlue.png?alt=media&token=57d5b390-eeeb-4423-9d2f-2506a7d95cb6',
         isFeatured: true,
-        brand: BrandModel(id: '', image: '', name: 'Nike'),
+        brand: BrandModel(
+            id: '6',
+            image:
+                'https://firebasestorage.googleapis.com/v0/b/myeshop-ff46b.appspot.com/o/Users%2FImages%2FBrands%2Fnike.png?alt=media&token=748e0a36-e157-4218-8ce2-50497cd99b08',
+            name: 'Nike'),
         description: 'Stylish Nike Air Jordan in eye-catching blue color',
         categoryId: '',
         productType: 'Single',

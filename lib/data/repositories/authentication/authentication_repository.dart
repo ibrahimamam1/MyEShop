@@ -1,4 +1,5 @@
 import 'package:e_shop/data/repositories/categories/category_repository.dart';
+import 'package:e_shop/data/repositories/products/product_repository.dart';
 import 'package:e_shop/data/repositories/user/user_repository.dart';
 import 'package:e_shop/features/authentication/view/login/login.dart';
 import 'package:e_shop/features/authentication/view/onboarding/onboarding.dart';
@@ -22,14 +23,14 @@ class AuthenticationRepository extends GetxController {
   //Return Authenticated User Data
   User? get authUser => _auth.currentUser;
 
-  final categoryRepository = CategoryRepository();
+  final productRepository = ProductRepository();
 
   //called automatically from main.dart on app launch
   @override
   void onReady() {
     FlutterNativeSplash.remove();
     screenRedirect();
-    categoryRepository.uploadCategoryProductsDummyData();
+    productRepository.uploadDummyProducts();
   }
 
   //Function to switch to relevant Screen

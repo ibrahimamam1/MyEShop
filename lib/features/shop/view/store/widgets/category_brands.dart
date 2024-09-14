@@ -53,9 +53,7 @@ class CategoryBrands extends StatelessWidget {
 
                       //Record found
                       final products = snapshot.data!;
-                      return AppBrandShowCase(
-                          images: products.map((e) => e.thumbnail).toList(),
-                          brand: brand);
+                      return AppBrandShowCase(brand: brand);
                     });
               });
         });
